@@ -316,7 +316,7 @@ export default function App() {
   const pct=Math.round((doneQ/(APPLES.length*3))*100);
 
   // ── HOME ────────────────────────────────────────────────────────────────────
-  if(sc==="home")return(
+  if(sc==="home"&&!isOpen)return(
     <Page><Box center>
       <FloatingApples/>
       <h1 style={S.bigTitle}>나는 어떤 사과인가?</h1>
