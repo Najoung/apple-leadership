@@ -153,6 +153,81 @@ const NO_TYPE = {
   eris:"변화를 촉구하는 사람이 없어요. 관성에 빠져 정체될 수 있습니다.",
 };
 
+// ── 56가지 조합 결과 ─────────────────────────────────────────────────────────
+const COMBO_RESULTS = {
+  // 탐구통찰형 (newton) ──────────────────────────────────
+  "newton_jobs":{ title:"통찰하고 행동하는 혁신가", desc:"충분히 이해한 후 용기 있게 시작하는 리더입니다. 분석과 실행 사이에서 균형을 잡는 이 조합은, 방향이 맞다는 확신이 생기는 순간 누구보다 빠르게 움직입니다. 생각이 행동의 발목을 잡지 않고, 행동이 생각 없이 달리지도 않습니다. 이 균형이 팀에서 가장 믿을 수 있는 혁신가를 만듭니다." },
+  "newton_adam":{ title:"원칙을 탐구하고 책임지는 리더", desc:"옳은 방향인지 충분히 검토한 후 그 결과를 끝까지 책임집니다. 쉽게 결정하지 않지만, 한 번 결정하면 흔들리지 않습니다. 팀이 어려운 선택 앞에 설 때 가장 먼저 찾게 되는 사람입니다. 신중함과 책임감이 함께하는 이 조합이 팀의 오랜 신뢰를 만들어냅니다." },
+  "newton_snowwhite":{ title:"이중 통찰의 리더", desc:"두 가지 다른 종류의 통찰을 동시에 가진 리더입니다. 본질을 탐구하는 눈과 위험을 감지하는 눈이 함께 작동합니다. 팀이 흥분해서 달려갈 때, 혼자 두 가지 질문을 동시에 던집니다. '왜 이것을 해야 하는가?'와 '이 방향이 정말 안전한가?' 이 이중 점검이 팀을 가장 큰 실수로부터 지킵니다." },
+  "newton_tell":{ title:"생각하고 반드시 실행하는 리더", desc:"충분히 분석한 후 압박 속에서도 결과를 만들어냅니다. 혼자서는 분석에 머물거나 방향 없이 달릴 수 있는 두 유형이, 함께하면 서로의 약점을 정확히 채워줍니다. 속도와 정확성이 동시에 필요한 순간에 가장 빛납니다. 사고와 실행의 가장 이상적인 균형을 가진 조합입니다." },
+  "newton_cezanne":{ title:"본질을 탐구하는 전문가", desc:"원리를 이해하고 그것을 최고 수준으로 구현합니다. 단순히 일을 잘하는 것을 넘어, 왜 그렇게 해야 하는지를 알고 그것을 완벽하게 구현하는 진정한 전문가입니다. 팀에서 가장 깊이 있는 결과물을 만들어내는 조합이며, 함께하는 시간이 길수록 더 빛납니다." },
+  "newton_hercules":{ title:"방향을 알고 포기하지 않는 리더", desc:"올바른 방향임을 확신한 순간, 어떤 장애물도 뚫고 나갑니다. 통찰 위에 불굴의 의지가 더해진 조합입니다. 방향이 틀렸을 때는 다시 묻고, 방향이 맞다고 확신하면 멈추지 않습니다. 판단의 정확성과 실행의 끈기가 함께할 때, 이 리더는 불가능을 가능으로 만듭니다." },
+  "newton_eris":{ title:"근거로 변화를 이끄는 리더", desc:"변화의 필요성을 느낌이나 감정이 아닌 논리와 통찰로 설득합니다. '이것을 바꿔야 합니다. 왜냐하면—'으로 시작하는 이 리더의 말은 팀이 쉽게 무시할 수 없습니다. 판을 흔들되 근거가 있고, 비판하되 대안이 있습니다. 조직에서 가장 설득력 있는 변화 촉진자입니다." },
+
+  // 창조혁신형 (jobs) ──────────────────────────────────
+  "jobs_newton":{ title:"도전하고 이해하는 혁신가", desc:"먼저 시도하고, 그 과정에서 원리를 탐구합니다. 행동이 앞서지만 이해가 뒤따르기 때문에 같은 실수를 반복하지 않습니다. 시행착오가 곧 통찰이 되는 조합입니다. 팀에서 가장 빠르게 배우는 리더이며, 경험이 쌓일수록 더 강해집니다." },
+  "jobs_adam":{ title:"책임지는 혁신가", desc:"새로운 시도를 두려워하지 않으면서, 그 결과까지 온전히 책임집니다. 많은 혁신가들이 아이디어는 내놓지만 결과 앞에서 흔들리는 반면, 이 조합은 끝까지 자리를 지킵니다. 팀이 믿고 따를 수 있는 혁신가이며, 변화를 이끌면서도 신뢰를 잃지 않는 드문 조합입니다." },
+  "jobs_snowwhite":{ title:"용감하지만 조심하는 혁신가", desc:"새로운 것을 추구하면서도 함정을 먼저 봅니다. 무모한 도전이 아닌 계산된 혁신을 만드는 조합입니다. '일단 해보자'는 에너지와 '잠깐, 이 부분은 확인해야 해'가 동시에 작동합니다. 새로운 시도가 큰 실패로 이어지는 경우가 적어, 혁신의 속도와 안전성을 함께 갖춘 조합입니다." },
+  "jobs_tell":{ title:"아이디어를 결과로 만드는 리더", desc:"창의적 아이디어를 빠르게 현실로 만들어냅니다. 생각에서 결과까지 가장 짧은 거리를 달리는 조합입니다. 아이디어만 넘치고 실행이 없거나, 실행만 있고 창의성이 없는 경우와 달리, 이 조합은 두 가지를 동시에 합니다. 팀이 '이게 가능할까?'를 고민하는 동안, 이미 결과를 만들어 보여주는 리더입니다." },
+  "jobs_cezanne":{ title:"완성도 있는 혁신가", desc:"아이디어를 높은 완성도로 구현합니다. 잡스와 워즈니악처럼, 창의성과 장인정신이 만나는 조합입니다. 새로운 것을 시도하되 '이 정도면 됐어'로 끝나지 않습니다. 혁신적이면서도 완성도 높은 결과물을 만들어내기 때문에, 세상이 오래 기억하는 것들을 만들 가능성이 높습니다." },
+  "jobs_hercules":{ title:"시작하고 끝까지 가는 혁신가", desc:"새로운 도전을 포기 없이 완수합니다. 아이디어가 현실이 될 때까지 멈추지 않는 불굴의 혁신가입니다. 많은 창조혁신형이 시작은 잘 하지만 완수가 아쉬운 반면, 이 조합은 끝을 봅니다. 중간에 어려움이 생겨도 새로운 방법을 찾아 계속 나아가며, '또 새로운 걸 시작했는데 이번엔 끝낼 수 있을까?'라는 걱정이 없는 조합입니다." },
+  "jobs_eris":{ title:"변화의 폭풍", desc:"기존을 부수고 새로운 판을 만드는 에너지가 두 배로 강해집니다. 조직에서 가장 강력한 변화의 촉매가 되는 조합입니다. 현실에 안주하는 것을 견디지 못하며, 모두가 '이대로도 괜찮아요'라고 할 때 가장 불편해집니다. 변화를 만드는 힘은 강력하지만, 속도를 조절하고 팀을 함께 데려가는 연습이 이 조합의 가장 중요한 성장 과제입니다." },
+
+  // 선택책임형 (adam) ──────────────────────────────────
+  "adam_newton":{ title:"원인을 파악하고 책임지는 리더", desc:"문제의 본질을 이해하고 모든 결과를 책임집니다. 왜 이런 일이 생겼는지 깊이 탐구하면서 동시에 그 결과를 온전히 자신의 것으로 받아들입니다. 팀에서 가장 신뢰받는 리더의 모습이며, 원인도 알고 책임도 지기 때문에 같은 실수를 반복하지 않습니다." },
+  "adam_jobs":{ title:"믿을 수 있는 혁신가", desc:"새로운 시도를 하면서도 결과에 끝까지 책임집니다. 변화와 신뢰를 동시에 만드는 드문 조합입니다. 혁신가이면서도 팀원들이 불안해하지 않는 이유는, 이 리더가 끝까지 자리를 지킨다는 것을 알기 때문입니다. 새로운 방향을 제안할 때 팀이 가장 쉽게 따라오는 조합입니다." },
+  "adam_snowwhite":{ title:"신중하게 선택하는 책임자", desc:"리스크를 충분히 파악한 후 선택하고, 그 결과를 책임집니다. 실수가 가장 적은 조합입니다. 쉽게 결정하지 않기 때문에 때로는 느리다는 인상을 줄 수 있지만, 한 번 내린 결정은 거의 흔들리지 않습니다. 중요한 결정일수록 이 리더를 옆에 두고 싶어지는 이유입니다." },
+  "adam_tell":{ title:"약속을 반드시 지키는 리더", desc:"명확한 목표를 세우고 어떤 상황에서도 결과까지 책임집니다. 팀에서 가장 믿음직한 존재입니다. '이 사람이 한다고 했으니 된다'는 신뢰가 자연스럽게 쌓이는 조합입니다. 압박이 심한 상황에서도 흔들리지 않고 결과를 만들어내며, 결과가 나오면 그것이 자신의 것임을 당연히 받아들입니다." },
+  "adam_cezanne":{ title:"완성도 높은 결과를 책임지는 리더", desc:"높은 기준을 유지하면서 그 결과까지 책임집니다. 품질과 신뢰를 동시에 보장합니다. '좋은 결과를 낼게요'가 아니라 '최고의 결과를 낼 것이고, 그렇지 못하면 제 책임입니다'가 이 조합의 언어입니다. 완성도와 신뢰 모두에서 타협하지 않는 리더입니다." },
+  "adam_hercules":{ title:"선택하고 끝까지 완수하는 리더", desc:"한 번 결정하면 어떤 어려움도 뚫고 완수합니다. 가장 강한 형태의 책임감을 가진 조합입니다. 선택의 무게를 알기 때문에 신중하게 결정하지만, 한 번 결정하면 중간에 포기라는 단어가 없습니다. 팀이 지쳐 포기하려 할 때 '우리가 선택한 것입니다. 끝까지 갑시다'를 말하는 리더입니다." },
+  "adam_eris":{ title:"변화를 책임지는 리더", desc:"필요한 변화를 용기 있게 일으키고 그 결과까지 책임집니다. 판을 흔든 후 수습까지 하는 완성형 변화 촉진자입니다. 변화를 외치고 사라지는 것이 아니라, 변화가 일어나는 동안 자리를 지키며 결과를 함께 안습니다. 변화가 두려운 팀원들이 가장 쉽게 따라올 수 있는 변화 촉진자입니다." },
+
+  // 위기감지형 (snowwhite) ──────────────────────────────────
+  "snowwhite_newton":{ title:"이중 통찰의 리더", desc:"위기 신호를 감지하고 그 근본 원인까지 파악합니다. 문제가 터지기 전에 두 단계 앞서 보는 조합입니다. 표면의 위험을 감지하는 데서 멈추지 않고, '왜 이런 신호가 나타나는가'까지 탐구합니다. 이 이중 통찰 덕분에 팀이 예상치 못한 위기에 빠지는 경우가 현저히 줄어듭니다." },
+  "snowwhite_jobs":{ title:"위험을 알면서도 도전하는 리더", desc:"리스크를 정확히 인지하면서도 시도를 두려워하지 않습니다. 가장 균형 잡힌 혁신가입니다. 위험을 보되 그것이 도전을 막지 않습니다. '이 리스크가 있지만 이렇게 하면 감당할 수 있다'는 방식으로 접근합니다. 무모하지도 않고 소극적이지도 않은, 이 절묘한 균형이 팀을 가장 지속 가능한 방식으로 혁신하게 합니다." },
+  "snowwhite_adam":{ title:"신중하고 책임감 있는 리더", desc:"충분히 살피고 선택하며, 그 결과를 끝까지 책임집니다. 실수와 후회가 가장 적은 조합입니다. 중요한 결정 앞에서 가장 많이 검토하고 가장 신중하게 결정합니다. 한 번 결정한 후 뒤를 돌아보지 않으며, 팀이 믿고 맡길 수 있는 가장 안정적인 리더의 모습입니다." },
+  "snowwhite_tell":{ title:"위기를 감지하고 즉각 대응하는 리더", desc:"위험을 보는 순간 빠르게 행동합니다. 위기 관리 능력이 탁월한 조합입니다. 위기를 감지하는 눈과 즉각 결과로 대응하는 실행력이 함께합니다. 감지와 대응을 동시에 하기 때문에, 위기 상황에서 팀에게 가장 든든한 존재가 됩니다." },
+  "snowwhite_cezanne":{ title:"완벽한 검증의 리더", desc:"모든 리스크를 점검하고 완성도 높은 결과를 만듭니다. 실수가 거의 없는 신중한 전문가입니다. 결과물을 내보내기 전에 품질 측면과 리스크 측면 모두를 꼼꼼히 확인합니다. 속도는 느릴 수 있지만, 완성된 결과물에 대한 신뢰도는 팀에서 가장 높습니다." },
+  "snowwhite_hercules":{ title:"함정을 피하며 나아가는 리더", desc:"위험을 감지하면서도 목표를 향해 포기하지 않습니다. 안전하게 불가능을 가능으로 만드는 조합입니다. 무모하게 달리지 않지만 멈추지도 않습니다. 함정이 보이면 우회로를 찾아 계속 전진합니다. 불굴의 의지와 지혜가 함께하는 가장 성숙한 형태의 목표 완수자입니다." },
+  "snowwhite_eris":{ title:"계산된 변화를 이끄는 리더", desc:"변화의 필요성을 느끼면서 리스크를 계산하며 추진합니다. 무모하지 않은 변화 촉진자입니다. '변화가 필요합니다. 단, 이 부분은 조심해야 합니다'라고 말할 수 있는 리더입니다. 팀이 변화 과정에서 가장 안전하게 새로운 방향으로 나아갈 수 있도록 돕는 조합입니다." },
+
+  // 성과실행형 (tell) ──────────────────────────────────
+  "tell_newton":{ title:"방향을 알고 결과를 내는 리더", desc:"방향을 확인한 후 압박 속에서도 최고의 결과를 만듭니다. 속도와 정확성이 함께하는 조합입니다. 방향이 맞는지 먼저 묻고, 방향이 확인되면 어떤 압박에도 흔들리지 않습니다. 빠르게 달리다 방향이 틀렸다는 것을 나중에 깨닫는 실수를 하지 않습니다." },
+  "tell_jobs":{ title:"창의적으로 빠르게 실행하는 리더", desc:"새로운 방법으로 빠르게 결과를 만듭니다. 실행력과 창의성이 결합한 강력한 조합입니다. 막힐 때 기존 방식을 고집하지 않고, 새로운 방법을 찾아 계속 나아갑니다. 불가능해 보이는 마감도 예상치 못한 방식으로 해결하며, 팀에서 '어떻게 했어요?'라는 말을 가장 많이 듣는 리더입니다." },
+  "tell_adam":{ title:"약속하고 반드시 지키는 리더", desc:"목표를 선언하고 어떤 어려움에도 결과를 만들어냅니다. 팀에서 가장 믿음직한 실행자입니다. 한 번 약속하면 반드시 지키겠다는 의지와 실행력이 함께합니다. '어렵지만 해보겠습니다'가 아닌 '반드시 합니다'로 말하는 리더이며, 함께 일하는 팀원들이 불안감보다 안도감을 더 많이 느끼는 조합입니다." },
+  "tell_snowwhite":{ title:"위기를 기회로 바꾸는 리더", desc:"위험을 감지하는 순간 즉각 결과로 대응합니다. 위기 관리 능력이 탁월한 조합입니다. 위기가 오기 전에 미리 신호를 읽고, 위기가 왔을 때 가장 빠르게 행동합니다. 팀 전체가 당황하는 순간에도 이 리더는 이미 다음 행동을 실행하고 있습니다." },
+  "tell_cezanne":{ title:"빠르고 완성도 있는 리더", desc:"실행 속도와 결과 품질 모두를 추구합니다. 이 두 가지가 충돌할 때 가장 성장하는 조합입니다. 빠르게 내놓고 싶은 마음과 더 다듬고 싶은 마음이 동시에 작동합니다. 그 균형을 찾아가는 과정이 이 리더를 더 강하게 만들며, 마감을 지키면서도 품질을 포기하지 않는 현장에서 가장 가치 있는 조합입니다." },
+  "tell_hercules":{ title:"끝까지 포기하지 않는 실행자", desc:"압박 속 집중력과 포기하지 않는 의지가 결합합니다. 불가능한 마감도 지켜내는 최강 실행 조합입니다. 어떤 상황에서도 '못 합니다'가 없습니다. 방법을 찾아서라도, 시간을 쪼개서라도 결과를 만들어냅니다. 팀이 한계에 부딪혀 포기하려 할 때, '아직 방법이 있습니다'를 말하며 다시 일어서게 합니다." },
+  "tell_eris":{ title:"변화를 즉각 실행하는 리더", desc:"변화가 필요하다고 느끼면 즉각 행동으로 옮깁니다. 변화의 속도가 가장 빠른 조합입니다. 변화를 외치면서 막상 행동이 느린 경우와 달리, 이 조합은 필요성을 인식하는 순간 이미 움직이기 시작합니다. 말보다 행동이 앞서는 변화 촉진자입니다." },
+
+  // 장인완성형 (cezanne) ──────────────────────────────────
+  "cezanne_newton":{ title:"원리부터 완성까지 가는 전문가", desc:"본질을 이해하고 그것을 최고 수준으로 구현합니다. 가장 깊이 있는 전문가의 조합입니다. 단순히 일을 잘하는 것을 넘어, 왜 그렇게 해야 하는지를 알고 그것을 완벽하게 구현합니다. 표면적인 기술이 아닌 원리에 대한 이해 위에 쌓인 전문성은, 어떤 상황에서도 흔들리지 않습니다." },
+  "cezanne_jobs":{ title:"새로운 방식으로 완성하는 리더", desc:"기존과 다른 방법을 시도하면서 완성도를 놓지 않습니다. 혁신과 장인정신이 만나는 조합입니다. 새로운 것을 시도하되 '이 정도면 됐어'로 끝나지 않습니다. 혁신적인 접근과 집요한 완성도가 함께하기 때문에, 이 조합이 만드는 결과물은 독창적이면서도 탁월합니다." },
+  "cezanne_adam":{ title:"믿을 수 있는 장인", desc:"완성도 높은 결과를 약속하고 반드시 지킵니다. 품질과 신뢰를 동시에 보장합니다. '최선을 다하겠습니다'가 아니라 '이 기준으로 만들겠습니다'라고 말하고 그것을 지킵니다. 팀에서 품질에 관한 한 가장 믿음직한 존재이며, 스스로 가장 높은 기준을 유지합니다." },
+  "cezanne_snowwhite":{ title:"완벽하고 안전한 결과의 장인", desc:"리스크를 점검하면서 완성도를 추구합니다. 실수 없이 최고의 결과를 만드는 신중한 전문가입니다. 결과물을 내보내기 전에 품질 측면과 리스크 측면 모두를 꼼꼼히 확인합니다. 실수가 큰 대가를 치르는 상황에서 가장 빛나는 조합입니다." },
+  "cezanne_tell":{ title:"빠르고 완성도 있는 장인", desc:"실행 속도와 완성도의 균형을 찾습니다. 이 두 가지 가치가 충돌할 때 가장 성장하는 조합입니다. 더 다듬고 싶은 마음과 지금 내놓아야 하는 현실 사이에서 최선의 균형점을 찾습니다. 완벽주의가 타이밍을 놓치게 하는 함정을 스스로 경계하면서, 현장에서 가장 실용적인 전문가로 성장하는 조합입니다." },
+  "cezanne_hercules":{ title:"끝날 때까지 다듬는 리더", desc:"완성될 때까지 포기하지 않습니다. 반복과 불굴의 의지로 최고를 만들어내는 세잔의 완성형입니다. 같은 것을 수십 번 다듬어도 지치지 않습니다. 오히려 반복할수록 더 좋아진다는 것을 알기 때문에, 주변이 충분하다고 할 때도 혼자 한 번 더 앉습니다. 완성의 의미를 가장 잘 아는 리더입니다." },
+  "cezanne_eris":{ title:"변화 속에서도 완성을 추구하는 리더", desc:"새로운 방식을 시도하면서 완성도를 유지합니다. 변화와 품질이 공존하는 조합입니다. '바꾸자'는 촉구와 '하지만 제대로 바꾸자'는 고집이 동시에 작동합니다. 변화하되 탁월함을 잃지 않는 드문 조합이며, 혁신적이면서도 완성도 있는 결과물을 만들어냅니다." },
+
+  // 목표완수형 (hercules) ──────────────────────────────────
+  "hercules_newton":{ title:"이해하고 완수하는 리더", desc:"목표의 의미를 깊이 이해하고 반드시 완수합니다. '왜'가 명확하기에 어떤 장애물도 뚫을 수 있는 조합입니다. 단순히 주어진 목표를 완수하는 것이 아니라, 그 목표가 왜 중요한지를 알고 움직입니다. 그 이해가 포기하고 싶은 순간에 다시 일어서게 합니다." },
+  "hercules_jobs":{ title:"불가능을 새로운 방법으로 해내는 리더", desc:"막힐 때마다 새로운 방법을 찾아 목표를 향해 나아갑니다. 포기 대신 우회로를 만드는 조합입니다. 헤라클레스가 아틀라스를 설득해 황금 사과를 가져온 것처럼, 정면 돌파가 아닌 창의적 우회로로 목표를 완수합니다. 장애물이 클수록 더 창의적인 해결책이 나오는 조합입니다." },
+  "hercules_adam":{ title:"약속한 것은 반드시 완수하는 리더", desc:"목표를 선언하고 포기 없이 책임집니다. 가장 강한 형태의 책임감을 가진 조합입니다. 한 번 약속하면 어떤 어려움이 와도 끝까지 갑니다. 팀이 지쳐 포기하려 할 때 '우리가 약속한 것입니다. 끝까지 갑시다'를 말하는 리더이며, 그 말이 팀을 다시 일어서게 합니다." },
+  "hercules_snowwhite":{ title:"함정을 피하며 목표를 완수하는 리더", desc:"위험을 감지하면서 안전하게 목표를 향해 나아갑니다. 용기와 지혜가 균형을 이루는 조합입니다. 앞만 보고 달리지 않습니다. 달리면서 동시에 함정이 없는지 살핍니다. 그 결과 불필요한 실패 없이 목표에 도달하는, 불굴의 의지가 무모함이 아닌 지혜로 표현되는 가장 성숙한 형태의 목표 완수자입니다." },
+  "hercules_tell":{ title:"어떤 압박에도 반드시 완수하는 리더", desc:"압박 속 집중력과 포기하지 않는 의지가 결합합니다. 불가능한 목표도 기한 내에 완수하는 최강 실행 조합입니다. 마감이 촉박하고, 자원이 부족하고, 아무도 해결책을 모를 때 — 이 조합은 오히려 더 또렷해집니다. 위기가 이들을 멈추게 하지 않고 오히려 각성시키는, 팀에서 가장 극한의 상황에서 빛나는 리더입니다." },
+  "hercules_cezanne":{ title:"최고의 완성을 향해 포기하지 않는 리더", desc:"높은 기준을 가지고 그것을 반드시 이루어냅니다. 타협하지 않고 최고를 향해 끝까지 가는 조합입니다. 완성도에 대한 집요한 기준과 포기하지 않는 의지가 함께합니다. 단순히 결과를 내는 것이 아니라 최고의 결과를 낼 때까지 멈추지 않으며, 이 리더의 결과물은 시간이 지날수록 더 빛납니다." },
+  "hercules_eris":{ title:"변화를 끝까지 이루는 리더", desc:"변화를 시작하고 반드시 완수합니다. 말이 아닌 결과로 변화를 증명하는 가장 강한 변화 리더입니다. 변화를 외치는 것에서 그치지 않고, 그 변화가 실제로 일어날 때까지 멈추지 않습니다. 변화의 저항이 클수록 오히려 더 강해지며, 조직에서 진짜 변화를 만들어내는 것이 가장 어려울 때 빛나는 조합입니다." },
+
+  // 변화촉진형 (eris) ──────────────────────────────────
+  "eris_newton":{ title:"근거로 변화를 이끄는 리더", desc:"변화의 필요성을 느낌이 아닌 논리와 통찰로 설득합니다. 가장 설득력 있는 변화 촉진자입니다. '이것을 바꿔야 합니다. 왜냐하면—'으로 시작하는 이 리더의 말은 팀이 쉽게 무시할 수 없습니다. 감정적 호소가 아닌 근거로 설득하기 때문에, 저항이 가장 적고 변화가 가장 오래 지속됩니다." },
+  "eris_jobs":{ title:"변화의 이중 불꽃", desc:"기존을 부수고 새로운 판을 만드는 에너지가 두 배로 강해집니다. 조직에서 가장 강력한 변화의 촉매가 되는 조합입니다. 현실에 안주하는 것을 두 가지 방향에서 동시에 거부합니다. 에너지가 강력한 만큼, 주변을 함께 데려가는 속도 조절과 팀 케어가 이 조합의 가장 중요한 성장 과제입니다." },
+  "eris_adam":{ title:"변화를 책임지는 리더", desc:"변화를 일으키고 그 결과까지 책임집니다. 판을 흔든 후 수습까지 하는 완성형 변화 촉진자입니다. 변화를 외치고 사라지는 것이 아니라, 변화가 일어나는 내내 자리를 지키고 결과를 함께 안습니다. 변화가 두려운 팀원들이 이 리더를 믿고 따르는 이유는, 이 사람이 끝까지 책임진다는 것을 알기 때문입니다." },
+  "eris_snowwhite":{ title:"계산하고 변화를 이끄는 리더", desc:"리스크를 알면서도 필요한 변화를 추진합니다. 무모하지 않은 변화 촉진자입니다. '변화가 필요합니다. 단, 이 부분은 조심해야 합니다'라고 말할 수 있는 리더입니다. 변화의 에너지와 위험 감지의 신중함이 함께하기 때문에, 변화 과정에서 예상치 못한 큰 실수를 줄입니다." },
+  "eris_tell":{ title:"변화를 빠르게 실행하는 리더", desc:"변화가 필요하다고 느끼면 즉각 행동으로 옮깁니다. 변화의 속도가 가장 빠른 조합입니다. 변화를 외치는 것과 실행하는 것 사이의 간격이 없습니다. 필요하다고 느끼는 순간 이미 움직이기 시작합니다. 결과가 나왔을 때 팀이 가장 빠르게 신뢰를 회복하는 조합이기도 합니다." },
+  "eris_cezanne":{ title:"완성도 있는 변화를 이끄는 리더", desc:"새로운 방식을 시도하면서 완성도를 유지합니다. 혁명적이면서도 완성도 있는 드문 조합입니다. 변화를 위한 변화가 아닌, 더 나은 것을 향한 변화를 추구합니다. 변화 이후의 결과물이 변화 이전보다 분명히 더 나은, 그 변화를 가장 설득력 있게 만드는 조합입니다." },
+  "eris_hercules":{ title:"변화를 끝까지 이루는 리더", desc:"변화를 시작하고 반드시 완수합니다. 말이 아닌 결과로 변화를 증명하는 가장 강한 변화 리더입니다. 많은 변화 촉진자들이 불씨를 당기지만 불이 꺼지기 전에 자리를 뜨는 반면, 이 조합은 불이 완전히 타오를 때까지 자리를 지킵니다. 변화의 저항이 클수록 오히려 더 강해지는 조합입니다." },
+};
+
 const makeCode = () => {
   const w=["APPLE","NEWTON","JOBS","ERIS","ROUN"][Math.floor(Math.random()*5)];
   return `${w}-${Math.floor(1000+Math.random()*9000)}`;
@@ -165,28 +240,15 @@ function getTeamDynamics(dashData) {
   const dist = Object.fromEntries(APPLES.map(a=>[a.id,0]));
   dashData.forEach(r=>{if(dist[r.topTypeId]!==undefined)dist[r.topTypeId]++;});
   const presentIds = APPLES.filter(a=>dist[a.id]>0).map(a=>a.id);
-
-  // 팀 성향 프로파일
   let matchedProfile = null;
   let maxMatch = 0;
   TEAM_DYNAMICS.profiles.forEach(p=>{
     const match = p.ids.filter(id=>dist[id]>0).length;
     if(match>maxMatch){maxMatch=match;matchedProfile=p;}
   });
-
-  // 시너지 찾기
-  const activeSynergies = TEAM_DYNAMICS.synergies.filter(s=>
-    presentIds.includes(s.a) && presentIds.includes(s.b)
-  );
-
-  // 긴장관계 찾기
-  const activeTensions = TEAM_DYNAMICS.tensions.filter(t=>
-    presentIds.includes(t.a) && presentIds.includes(t.b)
-  );
-
-  // 없는 유형
+  const activeSynergies = TEAM_DYNAMICS.synergies.filter(s=>presentIds.includes(s.a) && presentIds.includes(s.b));
+  const activeTensions = TEAM_DYNAMICS.tensions.filter(t=>presentIds.includes(t.a) && presentIds.includes(t.b));
   const missing = APPLES.filter(a=>dist[a.id]===0);
-
   return { dist, presentIds, matchedProfile, activeSynergies, activeTensions, missing };
 }
 
@@ -212,7 +274,8 @@ export default function App() {
   const [dashData,setDashData]=useState([]);
   const [lastRefresh,setLastRefresh]=useState(null);
   const [loading,setLoading]=useState(false);
-  const [dashTab,setDashTab]=useState("overview"); // overview | dynamics | members
+  const [dashTab,setDashTab]=useState("overview");
+  const [isOpen]=useState(()=>new URLSearchParams(window.location.search).has("book"));
 
   useEffect(()=>{
     if(sc!=="f_dash")return;
@@ -229,7 +292,11 @@ export default function App() {
   useEffect(()=>{
     if(sc==="p_result"&&!submitted&&Object.keys(scores).length>0){
       const top=topApple(scores);
-      DB.saveResult(code,pInfo?.name||"익명",{team:pInfo?.team||"",topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then(()=>setSubmitted(true));
+      if(!isOpen){
+        DB.saveResult(code,pInfo?.name||"익명",{team:pInfo?.team||"",topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then(()=>setSubmitted(true));
+      } else {
+        setSubmitted(true);
+      }
     }
   },[sc]);
 
@@ -242,7 +309,7 @@ export default function App() {
     else{setScores(calcScores(newAns));setSc("p_result");}
   };
 
-  const resetAll=()=>{setSc("home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setSubmitted(false);setDashData([]);setDashTab("overview");};
+  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setSubmitted(false);setDashData([]);setDashTab("overview");};
 
   const curA=APPLES[appleI];
   const doneQ=appleI*3+qI;
@@ -257,6 +324,24 @@ export default function App() {
       <p style={{...S.muted,margin:"0 0 28px",textAlign:"center",lineHeight:1.8}}>강사와 참여자가 실시간으로 연결되어<br/>팀별·부서별 리더십 분포를 한눈에 분석합니다</p>
       <Btn onClick={()=>setSc("f_create")} style={{marginBottom:12}}>👨‍🏫 강사 모드 — 세션 만들기</Btn>
       <Btn blue onClick={()=>setSc("p_join")}>🙋 참여자 모드 — 진단 참여하기</Btn>
+    </Box></Page>
+  );
+
+  // ── OPEN JOIN (전자책 독자 — 코드 없이 접근) ────────────────────────────────
+  if(sc==="open_join"||isOpen&&sc==="home")return(
+    <Page><Box center>
+      <div style={{fontSize:"3rem",marginBottom:8}}>🍎</div>
+      <h1 style={S.bigTitle}>나는 어떤 사과인가?</h1>
+      <p style={S.bigSub}>사과 리더십 유형 진단</p>
+      <p style={{...S.muted,margin:"0 0 24px",textAlign:"center",lineHeight:1.8}}>
+        8가지 사과 이야기를 읽고<br/>나의 리더십 유형을 발견해보세요
+      </p>
+      <Label>이름</Label>
+      <Input placeholder="이름을 입력하세요" value={nameIn} onChange={e=>setNameIn(e.target.value)}/>
+      <Btn style={{marginTop:8,opacity:nameIn.trim()?1:0.4}} disabled={!nameIn.trim()} onClick={()=>{
+        setPInfo({name:nameIn.trim(),team:"전자책독자"});
+        setSc("p_story");
+      }}>진단 시작하기 →</Btn>
     </Box></Page>
   );
 
@@ -295,11 +380,9 @@ export default function App() {
     const dist=dynamics?.dist||Object.fromEntries(APPLES.map(a=>[a.id,0]));
     const maxCnt=Math.max(...Object.values(dist),1);
     const teams=sess?.teams||[];
-
     return(
       <Page bg="#1a1a2e">
         <div style={{maxWidth:640,width:"100%"}}>
-          {/* Header */}
           <div style={S.dashHead}>
             <div>
               <div style={{fontSize:"0.72rem",color:"#aaa",marginBottom:4}}>{sess?.sessionName}</div>
@@ -308,17 +391,11 @@ export default function App() {
             </div>
             <div style={S.dashStat}><div style={S.dashBigNum}>{total}</div><div style={{fontSize:"0.7rem",color:"#aaa"}}>참여자</div></div>
           </div>
-
-          {/* Tab 메뉴 */}
           <div style={{display:"flex",gap:6,marginBottom:14}}>
             {[["overview","📊 분포"],["dynamics","🔗 역학관계"],["members","👥 참여자"]].map(([t,l])=>(
-              <button key={t} onClick={()=>setDashTab(t)} style={{flex:1,padding:"9px 4px",borderRadius:10,border:"none",background:dashTab===t?"#e74c3c":"#0d0d22",color:dashTab===t?"#fff":"#666",fontSize:"0.75rem",fontWeight:700,fontFamily:"inherit",cursor:"pointer"}}>
-                {l}
-              </button>
+              <button key={t} onClick={()=>setDashTab(t)} style={{flex:1,padding:"9px 4px",borderRadius:10,border:"none",background:dashTab===t?"#e74c3c":"#0d0d22",color:dashTab===t?"#fff":"#666",fontSize:"0.75rem",fontWeight:700,fontFamily:"inherit",cursor:"pointer"}}>{l}</button>
             ))}
           </div>
-
-          {/* ── Tab: 분포 */}
           {dashTab==="overview"&&<>
             <DashCard title="📊 유형별 분포">
               <div style={{display:"grid",gridTemplateColumns:"repeat(8,1fr)",gap:6,alignItems:"flex-end",paddingBottom:4}}>
@@ -332,8 +409,6 @@ export default function App() {
                 );})}
               </div>
             </DashCard>
-
-            {/* 팀별 분포 */}
             {teams.length>0&&total>0&&(
               <DashCard title="🏢 팀별 사과 분포">
                 {teams.map(tm=>{
@@ -348,8 +423,6 @@ export default function App() {
                 })}
               </DashCard>
             )}
-
-            {/* 없는 유형 */}
             {dynamics?.missing.length>0&&total>=2&&(
               <DashCard title="⚠️ 없는 유형 — 우리 팀의 사각지대" warn>
                 {dynamics.missing.map(a=>(<div key={a.id} style={{borderLeft:`3px solid ${a.color}`,paddingLeft:12,marginBottom:12}}>
@@ -359,13 +432,9 @@ export default function App() {
               </DashCard>
             )}
           </>}
-
-          {/* ── Tab: 역학관계 */}
           {dashTab==="dynamics"&&<>
             {total<2&&<DashCard title="🔗 역학관계 분석"><p style={{color:"#555",textAlign:"center",padding:"16px 0",fontSize:"0.82rem"}}>참여자 2명 이상부터 분석이 가능해요</p></DashCard>}
-
             {total>=2&&dynamics&&<>
-              {/* 팀 성향 */}
               {dynamics.matchedProfile&&(
                 <DashCard title="🎭 우리 팀의 종합 성향">
                   <div style={{background:"#0d0d1e",borderRadius:12,padding:"14px 16px"}}>
@@ -374,13 +443,10 @@ export default function App() {
                   </div>
                 </DashCard>
               )}
-
-              {/* 시너지 */}
               {dynamics.activeSynergies.length>0&&(
                 <DashCard title="✨ 우리 팀의 시너지 조합">
                   {dynamics.activeSynergies.map((s,i)=>{
-                    const aA=APPLES.find(x=>x.id===s.a);
-                    const aB=APPLES.find(x=>x.id===s.b);
+                    const aA=APPLES.find(x=>x.id===s.a);const aB=APPLES.find(x=>x.id===s.b);
                     return(<div key={i} style={{background:"#0d0d1e",borderRadius:12,padding:"12px 14px",marginBottom:8}}>
                       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
                         <span style={{background:aA?.color,color:"#fff",borderRadius:50,padding:"2px 10px",fontSize:"0.7rem",fontWeight:700}}>{aA?.emoji} {aA?.type}</span>
@@ -393,13 +459,10 @@ export default function App() {
                   })}
                 </DashCard>
               )}
-
-              {/* 긴장관계 */}
               {dynamics.activeTensions.length>0&&(
                 <DashCard title="⚡ 주의할 긴장 관계" warn>
                   {dynamics.activeTensions.map((t,i)=>{
-                    const aA=APPLES.find(x=>x.id===t.a);
-                    const aB=APPLES.find(x=>x.id===t.b);
+                    const aA=APPLES.find(x=>x.id===t.a);const aB=APPLES.find(x=>x.id===t.b);
                     return(<div key={i} style={{background:"#0d0d1e",borderRadius:12,padding:"12px 14px",marginBottom:8}}>
                       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
                         <span style={{background:aA?.color,color:"#fff",borderRadius:50,padding:"2px 10px",fontSize:"0.7rem",fontWeight:700}}>{aA?.emoji} {aA?.type}</span>
@@ -412,8 +475,6 @@ export default function App() {
                   })}
                 </DashCard>
               )}
-
-              {/* 강사 피드백 포인트 */}
               <DashCard title="💬 강사 피드백 포인트">
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
                   {[
@@ -428,8 +489,6 @@ export default function App() {
               </DashCard>
             </>}
           </>}
-
-          {/* ── Tab: 참여자 */}
           {dashTab==="members"&&(
             <DashCard title={`👥 참여자 목록 (${total}명)`}>
               {total===0
@@ -455,7 +514,6 @@ export default function App() {
                 </div>}
             </DashCard>
           )}
-
           <button style={S.ghostDark} onClick={resetAll}>← 처음으로</button>
         </div>
       </Page>
@@ -546,7 +604,7 @@ export default function App() {
     </Box></Page>
   );
 
-  // ── PARTICIPANT RESULT (풍부한 해설) ─────────────────────────────────────────
+  // ── PARTICIPANT RESULT ───────────────────────────────────────────────────────
   if(sc==="p_result"){
     const top=topApple(scores);
     const intA=APPLES.find(a=>a.id===intuitive);
@@ -554,6 +612,10 @@ export default function App() {
     const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
     const complementApple=APPLES.find(a=>a.id===top?.complement);
     const tensionApple=APPLES.find(a=>a.id===top?.tension);
+    // 56가지 조합 — 보조유형 (2위 유형)
+    const subApple=APPLES.find(a=>a.id===sorted[1]?.[0]);
+    const comboKey=`${top?.id}_${subApple?.id}`;
+    const combo=COMBO_RESULTS[comboKey];
 
     return(<Page><Box>
       {/* Hero */}
@@ -597,6 +659,22 @@ export default function App() {
           <span style={{fontSize:"0.7rem",fontWeight:700,color:a?.color,width:28,textAlign:"right"}}>{score}</span>
         </div>);})}
       </div>
+
+      {/* ── 56가지 조합 결과 (NEW) ── */}
+      {subApple&&combo&&(
+        <div style={{background:"#fff",border:`2px solid ${top?.color}`,borderRadius:16,padding:16,marginBottom:14}}>
+          <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🍎✨ 나의 사과 조합</h3>
+          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12,flexWrap:"wrap"}}>
+            <span style={{background:top?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{top?.emoji} {top?.type}</span>
+            <span style={{color:"#aaa",fontSize:"0.85rem",fontWeight:700}}>+</span>
+            <span style={{background:subApple?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{subApple?.emoji} {subApple?.type}</span>
+          </div>
+          <div style={{background:`${top?.color}0d`,borderRadius:12,padding:"14px 16px"}}>
+            <div style={{fontWeight:700,fontSize:"0.9rem",color:top?.color,marginBottom:10,fontFamily:"Georgia,serif"}}>{combo.title}</div>
+            <div style={{fontSize:"0.83rem",color:"#444",lineHeight:1.8}}>{combo.desc}</div>
+          </div>
+        </div>
+      )}
 
       {/* 직관 vs 행동 */}
       <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
@@ -651,11 +729,13 @@ export default function App() {
       </div>
 
       {/* 전송 상태 */}
-      <div style={{background:submitted?"#f0fff4":"#fffbf0",border:`1.5px solid ${submitted?"#27ae60":"#f39c12"}`,borderRadius:12,padding:"12px 16px",textAlign:"center",marginBottom:16}}>
-        <p style={{color:submitted?"#27ae60":"#f39c12",fontSize:"0.83rem",fontWeight:700,margin:0}}>
-          {submitted?"✅ 결과가 강사 대시보드에 전송됐어요!":"⏳ 결과 전송 중..."}
-        </p>
-      </div>
+      {!isOpen&&(
+        <div style={{background:submitted?"#f0fff4":"#fffbf0",border:`1.5px solid ${submitted?"#27ae60":"#f39c12"}`,borderRadius:12,padding:"12px 16px",textAlign:"center",marginBottom:16}}>
+          <p style={{color:submitted?"#27ae60":"#f39c12",fontSize:"0.83rem",fontWeight:700,margin:0}}>
+            {submitted?"✅ 결과가 강사 대시보드에 전송됐어요!":"⏳ 결과 전송 중..."}
+          </p>
+        </div>
+      )}
 
       <GhostBtn onClick={resetAll}>🔄 다시 진단하기</GhostBtn>
     </Box></Page>);
