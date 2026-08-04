@@ -24,7 +24,7 @@ const APPLES = [
     growth:"분석이 끝나지 않아도 '가설'로 먼저 실행해보는 연습이 필요합니다. 완벽한 답을 기다리기보다, 60% 확신에서 시작하는 용기를 가져보세요.",
     famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문에서 상대성이론을 발견했습니다.",
     complement:"tell", tension:"jobs",
-    questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다"] },
+    questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다","나는 이해되지 않으면 불편해서 끝까지 파고드는 편이다","많은 사람이 동의해도, 근거가 약하면 선뜻 따르지 않는다"] },
 
   { id:"jobs", emoji:"🍏", name:"잡스의 사과", type:"창조혁신형", color:"#27ae60", bg:"#f0fff4",
     keywords:["혁신","실행","용기"],
@@ -37,7 +37,7 @@ const APPLES = [
     growth:"혼자 달리는 속도를 팀의 속도에 맞추는 연습이 필요합니다. 내 아이디어를 팀과 함께 다듬는 과정이 결과의 완성도를 높입니다.",
     famousExample:"🚀 일론 머스크는 '전기차는 불가능하다'는 상식을 깨고 테슬라를 만들었습니다.",
     complement:"cezanne", tension:"newton",
-    questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다"] },
+    questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다","나는 지금 없는 것을 상상하고 만들어보는 데 끌린다","완벽한 계획을 기다리기보다 부딪히며 배우는 게 더 빠르다고 믿는다"] },
 
   { id:"adam", emoji:"🍑", name:"아담과 이브의 사과", type:"선택책임형", color:"#d35400", bg:"#fff8f0",
     keywords:["선택","책임","진정성"],
@@ -50,7 +50,7 @@ const APPLES = [
     growth:"모든 것을 혼자 짊어지려 하지 마세요. 책임을 나누는 것도 리더십입니다. '우리의 책임'으로 확장하면 팀 전체가 성장합니다.",
     famousExample:"🏈 손흥민은 팀이 질 때마다 '내가 더 잘했어야 했다'고 먼저 말합니다.",
     complement:"eris", tension:"snowwhite",
-    questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다"] },
+    questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다","나는 한 약속은 상황이 바뀌어도 지키려고 노력한다","결과가 안 좋을 때, 내가 무엇을 다르게 할 수 있었는지부터 돌아본다"] },
 
   { id:"snowwhite", emoji:"🍎", name:"백설공주의 사과", type:"위기감지형", color:"#8e44ad", bg:"#fdf0ff",
     keywords:["판단","직관","리스크"],
@@ -63,7 +63,7 @@ const APPLES = [
     growth:"모든 것을 의심하다 보면 팀의 에너지가 떨어질 수 있습니다. 리스크를 발견했다면 해결책도 함께 제시하는 습관을 만들어보세요.",
     famousExample:"🔍 워렌 버핏은 '이해할 수 없는 사업에는 투자하지 않는다'는 원칙으로 수많은 버블을 피했습니다.",
     complement:"hercules", tension:"adam",
-    questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다"] },
+    questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다","다들 낙관적일 때 오히려 '혹시나' 하는 생각이 먼저 든다","중요한 결정 앞에서는 최악의 경우를 미리 그려보는 편이다"] },
 
   { id:"tell", emoji:"🎯", name:"윌리엄 텔의 사과", type:"성과실행형", color:"#2980b9", bg:"#f0f8ff",
     keywords:["집중","압박","결과"],
@@ -76,7 +76,7 @@ const APPLES = [
     growth:"결과를 만드는 과정에서 팀원들이 지쳐있지 않은지 돌아보세요. 성과와 함께 사람을 챙기는 리더가 오래 갑니다.",
     famousExample:"⚽ 박지성은 '가장 힘든 경기에서 가장 많이 뛴다'는 평가를 받은 실행형 리더였습니다.",
     complement:"newton", tension:"cezanne",
-    questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다"] },
+    questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다","마감이 임박하면 잡생각이 사라지고 해야 할 일만 보인다","복잡한 상황일수록 핵심만 간결하게 정리해서 움직인다"] },
 
   { id:"cezanne", emoji:"🎨", name:"세잔의 사과", type:"장인완성형", color:"#16a085", bg:"#f0fffc",
     keywords:["반복","완성도","집요함"],
@@ -89,7 +89,7 @@ const APPLES = [
     growth:"완벽을 추구하다 타이밍을 놓치는 경우가 있습니다. '80점짜리 지금'이 '100점짜리 나중'보다 나을 때를 구별하는 감각을 키워보세요.",
     famousExample:"🏀 스테판 커리는 매일 같은 슛 동작을 수천 번 반복해 역사상 최고의 슈터가 됐습니다.",
     complement:"jobs", tension:"tell",
-    questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다"] },
+    questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다","다른 사람은 만족해도 나는 한 번 더 다듬고 싶어질 때가 많다","눈에 잘 안 띄는 디테일까지 신경 쓰는 편이다"] },
 
   { id:"hercules", emoji:"💪", name:"헤라클레스의 황금 사과", type:"목표완수형", color:"#f39c12", bg:"#fffbf0",
     keywords:["목표","불굴","완수"],
@@ -102,7 +102,7 @@ const APPLES = [
     growth:"목표를 향해 달리는 과정에서 팀원의 체력과 감정을 점검하세요. 혼자 완수하는 것보다 함께 완수하는 것이 더 오래 지속됩니다.",
     famousExample:"🏔️ 엄홍길 대장은 히말라야 8000m 봉우리 16좌를 완등하며 '끝까지'의 의미를 증명했습니다.",
     complement:"snowwhite", tension:"eris",
-    questions:["불가능해 보이는 목표도 일단 도전해본다","포기하고 싶은 순간에도 끝까지 완수하는 편이다","목표를 향해 가는 과정에서 장애물이 나를 더 강하게 만든다"] },
+    questions:["불가능해 보이는 목표도 일단 도전해본다","포기하고 싶은 순간에도 끝까지 완수하는 편이다","목표를 향해 가는 과정에서 장애물이 나를 더 강하게 만든다","시작한 일을 끝맺지 못하면 마음이 계속 남는다","힘든 순간에도 '그래도 여기까지 왔는데'라는 생각으로 버틴다"] },
 
   { id:"eris", emoji:"✨", name:"에리스의 황금 사과", type:"변화촉진형", color:"#e74c3c", bg:"#fff0f0",
     keywords:["도전","갈등","촉매"],
@@ -115,7 +115,7 @@ const APPLES = [
     growth:"변화를 촉구할 때 대안도 함께 준비해주세요. 판을 흔드는 것과 판을 새로 짜는 것은 함께 이뤄져야 진짜 변화가 됩니다.",
     famousExample:"🎤 방탄소년단은 기존 K-POP의 문법을 거부하고 자신들만의 서사로 세계를 바꿨습니다.",
     complement:"adam", tension:"hercules",
-    questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다"] },
+    questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다","'원래 이렇게 해왔다'는 말을 들으면 오히려 의문이 든다","모두가 침묵할 때, 그 침묵을 깨는 쪽은 대체로 나다"] },
 ];
 
 const TEAM_DYNAMICS = {
@@ -216,11 +216,11 @@ const makeCode = () => {
   const w=["APPLE","NEWTON","JOBS","ERIS","ROUN"][Math.floor(Math.random()*5)];
   return `${w}-${Math.floor(1000+Math.random()*9000)}`;
 };
-const calcScores=(ans)=>{const s={};APPLES.forEach(a=>{s[a.id]=[0,1,2].reduce((sum,i)=>sum+(ans[`${a.id}_${i}`]||0),0);});return s;};
+const calcScores=(ans)=>{const s={};APPLES.forEach(a=>{s[a.id]=[0,1,2,3,4].reduce((sum,i)=>sum+(ans[`${a.id}_${i}`]||0),0);});return s;};
 const topApple=(scores)=>[...APPLES].sort((a,b)=>(scores[b.id]||0)-(scores[a.id]||0))[0];
 
 // ── 3축 좌표 (신규) ─────────────────────────────────────────────────────────
-// 기존 24문항·8유형 점수 구조를 그대로 두고, 유형을 축으로 재조합만 함 (문항 추가/변경 없음)
+// 8유형 점수를 축으로 재조합 (40문항·8유형 구조, 유형당 5문항×7점척도)
 const AXIS_GROUPS = {
   ta: { leftLabel:"사고", rightLabel:"실행", left:["newton","jobs","snowwhite","eris"], right:["adam","tell","cezanne","hercules"], leftColor:"#4A6670", rightColor:"#A13B3B" },
   sv: { leftLabel:"안정", rightLabel:"변화", left:["newton","adam","snowwhite","cezanne"], right:["jobs","tell","hercules","eris"], leftColor:"#5B6B8C", rightColor:"#B8562F" },
@@ -309,14 +309,14 @@ export default function App() {
     const key=`${APPLES[appleI].id}_${qI}`;
     const newAns={...answers,[key]:val};
     setAnswers(newAns);
-    if(qI<2){setQI(qI+1);}
+    if(qI<4){setQI(qI+1);}
     else if(appleI<APPLES.length-1){setAppleI(appleI+1);setQI(0);}
     else{setScores(calcScores(newAns));setSc("p_result");}
   };
 
   const goBackQuestion=()=>{
     if(qI>0){setQI(qI-1);}
-    else if(appleI>0){setAppleI(appleI-1);setQI(2);}
+    else if(appleI>0){setAppleI(appleI-1);setQI(4);}
   };
 
   const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSubmitted(false);setDashData([]);setDashTab("overview");};
@@ -345,8 +345,8 @@ export default function App() {
 
 
   const curA=APPLES[appleI];
-  const doneQ=appleI*3+qI;
-  const pct=Math.round((doneQ/(APPLES.length*3))*100);
+  const doneQ=appleI*5+qI;
+  const pct=Math.round((doneQ/(APPLES.length*5))*100);
 
   if(sc==="home"&&!isOpen)return(
     <Page><Box center>
@@ -623,13 +623,13 @@ export default function App() {
   if(sc==="p_diag")return(
     <Page bg={curA.bg}><Box>
       <div style={{marginBottom:22}}>
-        <div style={{display:"flex",justifyContent:"space-between",fontSize:"0.75rem",color:"#999",marginBottom:6}}><span>{curA.name}</span><span>{doneQ+1} / {APPLES.length*3}</span></div>
+        <div style={{display:"flex",justifyContent:"space-between",fontSize:"0.75rem",color:"#999",marginBottom:6}}><span>{curA.name}</span><span>{doneQ+1} / {APPLES.length*5}</span></div>
         <div style={{height:6,background:"#e8e8e8",borderRadius:3,overflow:"hidden"}}><div style={{height:"100%",width:`${pct}%`,background:curA.color,borderRadius:3,transition:"width 0.35s ease"}}/></div>
       </div>
       <div style={{marginBottom:20}}><span style={{background:curA.color,color:"#fff",borderRadius:50,padding:"5px 16px",fontSize:"0.78rem",fontWeight:700,display:"inline-block"}}>{curA.emoji} {curA.type}</span></div>
       <p style={{fontFamily:"Georgia,serif",fontSize:"1rem",color:"#1a1a1a",lineHeight:1.75,fontWeight:700,marginBottom:30}}>{curA.questions[qI]}</p>
       <div style={{display:"flex",gap:10,justifyContent:"center",marginBottom:10}}>
-        {[1,2,3,4,5].map(v=>{const sel=answers[`${curA.id}_${qI}`]===v;return(<button key={v} onClick={()=>handleAnswer(v)} style={{width:52,height:52,borderRadius:"50%",border:`2px solid ${curA.color}`,background:sel?curA.color:"#fff",color:sel?"#fff":curA.color,fontSize:"1.1rem",fontWeight:700,cursor:"pointer",transition:"all 0.15s",fontFamily:"inherit",boxShadow:sel?`0 4px 14px ${curA.color}55`:"none"}}>{v}</button>);})}
+        {[1,2,3,4,5,6,7].map(v=>{const sel=answers[`${curA.id}_${qI}`]===v;return(<button key={v} onClick={()=>handleAnswer(v)} style={{width:40,height:40,borderRadius:"50%",border:`2px solid ${curA.color}`,background:sel?curA.color:"#fff",color:sel?"#fff":curA.color,fontSize:"0.95rem",fontWeight:700,cursor:"pointer",transition:"all 0.15s",fontFamily:"inherit",boxShadow:sel?`0 4px 14px ${curA.color}55`:"none"}}>{v}</button>);})}
       </div>
       <div style={{display:"flex",justifyContent:"space-between",fontSize:"0.7rem",color:"#bbb",padding:"0 2px"}}><span>전혀 아니다</span><span>매우 그렇다</span></div>
       {(appleI>0||qI>0)&&<GhostBtn onClick={goBackQuestion}>← 이전 문항 (답 수정하기)</GhostBtn>}
@@ -659,15 +659,15 @@ export default function App() {
         <>
           <div className="print-card" style={{background:"linear-gradient(135deg,#eee,#f8f8f8)",border:"2px solid #ccc",borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
             <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
-            <h2 style={{color:"#555",fontSize:"1.4rem",margin:"0 0 8px",fontFamily:"Georgia,serif"}}>복합형 — {tiedIds.length}개 유형 동점</h2>
-            <p style={{fontSize:"0.8rem",color:"#777",margin:"0 0 14px"}}>같은 점수({maxScore}점)가 {tiedIds.length}개 나왔어요. 아래에서 지금 나를 가장 잘 설명하는 유형을 하나 골라보세요.</p>
+            <h2 style={{color:"#555",fontSize:"1.4rem",margin:"0 0 8px",fontFamily:"Georgia,serif"}}>균형형 — {tiedIds.length}가지 강점이 고르게 발달</h2>
+            <p style={{fontSize:"0.8rem",color:"#777",margin:"0 0 14px"}}>{tiedIds.length}개 유형에서 똑같이 높은 점수({maxScore}점)가 나왔어요. 한 가지 강점에 치우치지 않고 여러 방식을 두루 갖췄다는 뜻이에요. 그중 지금 나를 가장 잘 설명하는 유형을 골라 더 자세히 볼 수 있어요.</p>
             <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
               {tiedIds.map(id=>{const a=APPLES.find(x=>x.id===id);return<span key={id} style={{background:a.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.74rem",fontWeight:700}}>{a.emoji} {a.type}</span>;})}
             </div>
           </div>
           <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
-            <h3 style={{fontSize:"0.85rem",margin:"0 0 4px",color:"#333"}}>🍎 동점 유형 비교</h3>
-            <p style={{fontSize:"0.76rem",color:"#888",margin:"0 0 14px"}}>이 진단은 완벽하지 않아요. 아래 설명을 다 읽고 "지금 이 순간 가장 나 같은" 유형을 눌러 선택해주세요.</p>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 4px",color:"#333"}}>🍎 나의 균형 잡힌 강점들</h3>
+            <p style={{fontSize:"0.76rem",color:"#888",margin:"0 0 14px"}}>아래 설명을 읽어보고, "지금 이 순간 가장 나답다"고 느껴지는 유형을 눌러보세요.</p>
             {tiedIds.map(id=>{const a=APPLES.find(x=>x.id===id);return(
               <button key={id} onClick={()=>setChosenTie(id)} className="no-print" style={{display:"block",width:"100%",textAlign:"left",background:`${a.color}0d`,border:`1.5px solid ${a.color}55`,borderRadius:12,padding:"12px 14px",marginBottom:10,cursor:"pointer",fontFamily:"inherit"}}>
                 <div style={{color:a.color,fontWeight:700,fontSize:"0.85rem",marginBottom:4}}>{a.emoji} {a.type} <span style={{fontWeight:400,color:"#888"}}>· {a.name}</span></div>
@@ -676,14 +676,14 @@ export default function App() {
                 <div style={{fontSize:"0.72rem",color:a.color,fontWeight:700,marginTop:6}}>이 유형으로 자세히 보기 →</div>
               </button>
             );})}
-            {intA&&<p style={{fontSize:"0.72rem",color:"#999",margin:"8px 0 0",borderTop:"1px solid #eee",paddingTop:8}}>참고로 직관으로 고르신 유형은 <strong style={{color:intA.color}}>{intA.type}</strong>이에요. {tiedIds.includes(intuitive)?"동점 후보 중 하나와 일치하네요!":"동점 후보와는 다른 유형이에요."}</p>}
+            {intA&&<p style={{fontSize:"0.72rem",color:"#999",margin:"8px 0 0",borderTop:"1px solid #eee",paddingTop:8}}>참고로 직관으로 고르신 유형은 <strong style={{color:intA.color}}>{intA.type}</strong>이에요. {tiedIds.includes(intuitive)?"위 강점 후보 중 하나와 일치하네요!":"위 강점 후보와는 다른 유형이에요."}</p>}
           </div>
         </>
       ) : (
         <>
           {isTie&&chosenTie&&(
             <div className="no-print" style={{background:"#fffbf0",border:"1px solid #f39c1240",borderRadius:10,padding:"10px 14px",marginBottom:12,fontSize:"0.76rem",color:"#888",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-              <span>동점 {tiedIds.length}개 중 <strong style={{color:top.color}}>{top.type}</strong>을 선택해서 보고 있어요</span>
+              <span>균형있게 발달한 {tiedIds.length}가지 강점 중 <strong style={{color:top.color}}>{top.type}</strong>을 선택해서 보고 있어요</span>
               <button onClick={()=>setChosenTie(null)} style={{background:"none",border:"none",color:"#2980b9",fontSize:"0.74rem",cursor:"pointer",fontFamily:"inherit"}}>다른 유형 보기</button>
             </div>
           )}
@@ -722,7 +722,7 @@ export default function App() {
         {orderedApples().map(a=>{const score=scores[a.id]||0;return(<div key={a.id} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
           <span style={{fontSize:"0.9rem",width:22}}>{a?.emoji}</span>
           <span style={{fontSize:"0.68rem",color:"#666",width:60,flexShrink:0}}>{a?.type}</span>
-          <div style={{flex:1,height:7,background:"#f0f0f0",borderRadius:4,overflow:"hidden"}}><div style={{height:"100%",width:`${(score/15)*100}%`,background:a?.color,borderRadius:4,transition:"width 0.8s ease"}}/></div>
+          <div style={{flex:1,height:7,background:"#f0f0f0",borderRadius:4,overflow:"hidden"}}><div style={{height:"100%",width:`${(score/35)*100}%`,background:a?.color,borderRadius:4,transition:"width 0.8s ease"}}/></div>
           <span style={{fontSize:"0.7rem",fontWeight:700,color:a?.color,width:28,textAlign:"right"}}>{score}</span>
         </div>);})}
       </div>
