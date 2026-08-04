@@ -754,6 +754,7 @@ export default function App() {
 
       <div style={{textAlign:"center"}} className="no-print">
         <GhostBtn onClick={()=>window.print()}>🖨 PDF로 저장</GhostBtn>
+        <p style={{fontSize:"0.68rem",color:"#aaa",marginTop:-4,marginBottom:8}}>인쇄창에서 <strong>"배경 그래픽"</strong> 옵션을 켜야 색이 그대로 저장돼요</p>
       </div>
 
       {!isOpen&&(
@@ -790,7 +791,7 @@ function AxisBar({group}){
     </div>
   );
 }
-function Page({children,bg="linear-gradient(160deg,#fff9f0,#ffe8d6)"}){return(<div style={{minHeight:"100vh",background:bg,display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px 60px",fontFamily:"'Noto Sans KR',sans-serif"}}><style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');*{box-sizing:border-box;}button{cursor:pointer;}@media print{body *{visibility:hidden;}.print-area,.print-area *{visibility:visible;}.print-area{position:absolute;left:0;top:0;width:100%;}.no-print{display:none !important;}}`}</style>{children}</div>);}
+function Page({children,bg="linear-gradient(160deg,#fff9f0,#ffe8d6)"}){return(<div style={{minHeight:"100vh",background:bg,display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px 60px",fontFamily:"'Noto Sans KR',sans-serif"}}><style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}button{cursor:pointer;}@media print{body *{visibility:hidden;}.print-area,.print-area *{visibility:visible;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}.print-area{position:absolute;left:0;top:0;width:100%;}.no-print{display:none !important;}}`}</style>{children}</div>);}
 function Box({children,center=false}){return<div style={{background:"#fff",borderRadius:24,padding:"32px 22px",maxWidth:480,width:"100%",boxShadow:"0 16px 48px rgba(0,0,0,0.09)",textAlign:center?"center":"left"}}>{children}</div>;}
 function DashCard({title,children,warn=false}){return(<div style={{background:warn?"#1a0f00":"#0d0d22",border:`1px solid ${warn?"#3a2000":"#1e1e3a"}`,borderRadius:16,padding:20,marginBottom:14}}><h3 style={{margin:"0 0 14px",fontSize:"0.88rem",color:warn?"#f39c12":"#aaa",fontWeight:700}}>{title}</h3>{children}</div>);}
 function FloatingApples(){return(<div style={{display:"flex",justifyContent:"center",gap:8,marginBottom:16,fontSize:"1.8rem"}}>{["🍎","🍏","🍎","🍏","🍎"].map((e,i)=>(<span key={i} style={{display:"inline-block",animation:`fl${i} ${2.5+i*0.3}s ease-in-out infinite`,animationDelay:`${i*0.4}s`}}>{e}<style>{`@keyframes fl${i}{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}`}</style></span>))}</div>);}
