@@ -22,7 +22,7 @@ const APPLES = [
     detail:"당신은 현상의 표면이 아닌 본질을 탐구하는 리더입니다. 팀이 '어떻게 할까?'를 고민할 때, 당신은 '왜 해야 하는가?'를 먼저 묻습니다. 이 질문 하나가 팀 전체의 방향을 바로잡는 힘이 됩니다.",
     situations:["회의에서 아무도 의문을 제기하지 않을 때 핵심 질문을 던진다","복잡한 문제의 근본 원인을 찾아 재정의한다","팀이 엉뚱한 방향으로 달릴 때 '왜?'로 브레이크를 건다"],
     growth:"분석이 끝나지 않아도 '가설'로 먼저 실행해보는 연습이 필요합니다. 완벽한 답을 기다리기보다, 60% 확신에서 시작하는 용기를 가져보세요.",
-    famousExample:"🧠 스티브 잡스는 '왜 컴퓨터는 이렇게 복잡해야 하는가?'라는 질문으로 아이폰을 만들었습니다.",
+    famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문에서 상대성이론을 발견했습니다.",
     complement:"tell", tension:"jobs",
     questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다"] },
 
@@ -235,6 +235,9 @@ const calcAxisScores=(scores)=>{
   });
   return out;
 };
+// 원고 01~08 공식 순서 (내부 배열 순서와 다름 — 표시 전용)
+const ORDER_1_TO_8=["newton","snowwhite","jobs","eris","cezanne","adam","tell","hercules"];
+const orderedApples=()=>ORDER_1_TO_8.map(id=>APPLES.find(a=>a.id===id));
 
 function getTeamDynamics(dashData) {
   if (dashData.length < 2) return null;
@@ -271,6 +274,7 @@ export default function App() {
   const [appleI,setAppleI]=useState(0);
   const [qI,setQI]=useState(0);
   const [scores,setScores]=useState({});
+  const [chosenTie,setChosenTie]=useState(null);
   const [submitted,setSubmitted]=useState(false);
   const [dashData,setDashData]=useState([]);
   const [lastRefresh,setLastRefresh]=useState(null);
@@ -310,7 +314,12 @@ export default function App() {
     else{setScores(calcScores(newAns));setSc("p_result");}
   };
 
-  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setSubmitted(false);setDashData([]);setDashTab("overview");};
+  const goBackQuestion=()=>{
+    if(qI>0){setQI(qI-1);}
+    else if(appleI>0){setAppleI(appleI-1);setQI(2);}
+  };
+
+  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSubmitted(false);setDashData([]);setDashTab("overview");};
 
   const exportExcel=()=>{
     if(!dashData.length)return;
@@ -422,7 +431,7 @@ export default function App() {
           {dashTab==="overview"&&<>
             <DashCard title="📊 유형별 분포">
               <div style={{display:"grid",gridTemplateColumns:"repeat(8,1fr)",gap:6,alignItems:"flex-end",paddingBottom:4}}>
-                {APPLES.map(a=>{const cnt=dist[a.id];const h=cnt>0?Math.max((cnt/maxCnt)*90,18):6;return(
+                {orderedApples().map(a=>{const cnt=dist[a.id];const h=cnt>0?Math.max((cnt/maxCnt)*90,18):6;return(
                   <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
                     <span style={{fontSize:"0.7rem",fontWeight:700,color:cnt>0?a.color:"#555",minHeight:16}}>{cnt>0?cnt:""}</span>
                     <div style={{width:"100%",height:`${h}px`,background:cnt>0?a.color:"#2a2a4a",borderRadius:"4px 4px 0 0",transition:"height 0.6s ease"}}/>
@@ -605,7 +614,7 @@ export default function App() {
       <h2 style={{...S.h2,textAlign:"center"}}>지금 가장 끌리는 사과는?</h2>
       <p style={{...S.muted,textAlign:"center",marginBottom:20}}>정답 없어요. 직관으로 하나만 고르세요 🍎</p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:20}}>
-        {APPLES.map(a=>(<button key={a.id} onClick={()=>setIntuitive(a.id)} style={{border:`2px solid ${a.color}`,borderRadius:14,padding:"14px 8px",background:intuitive===a.id?a.color:"#fff",color:intuitive===a.id?"#fff":a.color,cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:4,transition:"all 0.2s",fontFamily:"inherit",transform:intuitive===a.id?"scale(1.04)":"scale(1)",boxShadow:intuitive===a.id?`0 6px 20px ${a.color}55`:"none"}}><span style={{fontSize:"1.6rem"}}>{a.emoji}</span><span style={{fontSize:"0.72rem",fontWeight:700,textAlign:"center",lineHeight:1.3}}>{a.name}</span><span style={{fontSize:"0.65rem",opacity:0.85}}>{a.type}</span></button>))}
+        {orderedApples().map(a=>(<button key={a.id} onClick={()=>setIntuitive(a.id)} style={{border:`2px solid ${a.color}`,borderRadius:14,padding:"14px 8px",background:intuitive===a.id?a.color:"#fff",color:intuitive===a.id?"#fff":a.color,cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:4,transition:"all 0.2s",fontFamily:"inherit",transform:intuitive===a.id?"scale(1.04)":"scale(1)",boxShadow:intuitive===a.id?`0 6px 20px ${a.color}55`:"none"}}><span style={{fontSize:"1.6rem"}}>{a.emoji}</span><span style={{fontSize:"0.72rem",fontWeight:700,textAlign:"center",lineHeight:1.3}}>{a.name}</span><span style={{fontSize:"0.65rem",opacity:0.85}}>{a.type}</span></button>))}
       </div>
       <Btn style={{opacity:intuitive?1:0.4}} disabled={!intuitive} onClick={()=>setSc("p_diag")}>행동 진단 시작 →</Btn>
     </div></Page>
@@ -623,54 +632,94 @@ export default function App() {
         {[1,2,3,4,5].map(v=>{const sel=answers[`${curA.id}_${qI}`]===v;return(<button key={v} onClick={()=>handleAnswer(v)} style={{width:52,height:52,borderRadius:"50%",border:`2px solid ${curA.color}`,background:sel?curA.color:"#fff",color:sel?"#fff":curA.color,fontSize:"1.1rem",fontWeight:700,cursor:"pointer",transition:"all 0.15s",fontFamily:"inherit",boxShadow:sel?`0 4px 14px ${curA.color}55`:"none"}}>{v}</button>);})}
       </div>
       <div style={{display:"flex",justifyContent:"space-between",fontSize:"0.7rem",color:"#bbb",padding:"0 2px"}}><span>전혀 아니다</span><span>매우 그렇다</span></div>
+      {(appleI>0||qI>0)&&<GhostBtn onClick={goBackQuestion}>← 이전 문항 (답 수정하기)</GhostBtn>}
     </Box></Page>
   );
 
   if(sc==="p_result"){
-    const top=topApple(scores);
+    const maxScore=Math.max(...Object.values(scores));
+    const tiedIds=APPLES.filter(a=>scores[a.id]===maxScore).map(a=>a.id);
+    const isTie=tiedIds.length>1;
+    const topId=isTie?chosenTie:tiedIds[0];
+    const top=topId?APPLES.find(a=>a.id===topId):null;
     const intA=APPLES.find(a=>a.id===intuitive);
-    const match=intuitive===top?.id;
+    const match=top?intuitive===top.id:false;
     const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
-    const complementApple=APPLES.find(a=>a.id===top?.complement);
-    const tensionApple=APPLES.find(a=>a.id===top?.tension);
-    const subApple=APPLES.find(a=>a.id===sorted[1]?.[0]);
+    const complementApple=top?APPLES.find(a=>a.id===top.complement):null;
+    const tensionApple=top?APPLES.find(a=>a.id===top.tension):null;
+    const subApple=top?APPLES.find(a=>a.id===sorted.find(([id])=>id!==top.id)?.[0]):null;
     const comboKey=`${top?.id}_${subApple?.id}`;
     const combo=COMBO_RESULTS[comboKey];
     const axisScores=calcAxisScores(scores);
+    const showFull=!isTie||chosenTie;
 
     return(<Page><Box>
       <div className="print-area">
-      <div style={{background:`linear-gradient(135deg,${top?.color}18,${top?.color}35)`,border:`2px solid ${top?.color}`,borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
-        <div style={{...S.appleCircle,background:top?.color,marginBottom:12}}>{top?.emoji}</div>
-        <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
-        <h2 style={{color:top?.color,fontSize:"1.65rem",margin:"0 0 4px",fontFamily:"Georgia,serif"}}>{top?.type}</h2>
-        <p style={{color:top?.color,fontSize:"0.83rem",margin:"0 0 12px"}}>{top?.name}</p>
-        <p style={{fontFamily:"Georgia,serif",color:"#444",fontSize:"0.9rem",margin:"0 0 14px"}}>"{top?.tagline}"</p>
-        <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
-          {top?.keywords.map(k=><span key={k} style={{border:`1.5px solid ${top?.color}`,color:top?.color,borderRadius:50,padding:"2px 12px",fontSize:"0.74rem",fontWeight:500}}>{k}</span>)}
-        </div>
-      </div>
+      {!showFull ? (
+        <>
+          <div className="print-card" style={{background:"linear-gradient(135deg,#eee,#f8f8f8)",border:"2px solid #ccc",borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
+            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
+            <h2 style={{color:"#555",fontSize:"1.4rem",margin:"0 0 8px",fontFamily:"Georgia,serif"}}>복합형 — {tiedIds.length}개 유형 동점</h2>
+            <p style={{fontSize:"0.8rem",color:"#777",margin:"0 0 14px"}}>같은 점수({maxScore}점)가 {tiedIds.length}개 나왔어요. 아래에서 지금 나를 가장 잘 설명하는 유형을 하나 골라보세요.</p>
+            <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
+              {tiedIds.map(id=>{const a=APPLES.find(x=>x.id===id);return<span key={id} style={{background:a.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.74rem",fontWeight:700}}>{a.emoji} {a.type}</span>;})}
+            </div>
+          </div>
+          <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 4px",color:"#333"}}>🍎 동점 유형 비교</h3>
+            <p style={{fontSize:"0.76rem",color:"#888",margin:"0 0 14px"}}>이 진단은 완벽하지 않아요. 아래 설명을 다 읽고 "지금 이 순간 가장 나 같은" 유형을 눌러 선택해주세요.</p>
+            {tiedIds.map(id=>{const a=APPLES.find(x=>x.id===id);return(
+              <button key={id} onClick={()=>setChosenTie(id)} className="no-print" style={{display:"block",width:"100%",textAlign:"left",background:`${a.color}0d`,border:`1.5px solid ${a.color}55`,borderRadius:12,padding:"12px 14px",marginBottom:10,cursor:"pointer",fontFamily:"inherit"}}>
+                <div style={{color:a.color,fontWeight:700,fontSize:"0.85rem",marginBottom:4}}>{a.emoji} {a.type} <span style={{fontWeight:400,color:"#888"}}>· {a.name}</span></div>
+                <div style={{fontSize:"0.78rem",color:"#555",fontStyle:"italic",marginBottom:4}}>"{a.tagline}"</div>
+                <div style={{fontSize:"0.76rem",color:"#666",lineHeight:1.5}}>{a.strength}</div>
+                <div style={{fontSize:"0.72rem",color:a.color,fontWeight:700,marginTop:6}}>이 유형으로 자세히 보기 →</div>
+              </button>
+            );})}
+            {intA&&<p style={{fontSize:"0.72rem",color:"#999",margin:"8px 0 0",borderTop:"1px solid #eee",paddingTop:8}}>참고로 직관으로 고르신 유형은 <strong style={{color:intA.color}}>{intA.type}</strong>이에요. {tiedIds.includes(intuitive)?"동점 후보 중 하나와 일치하네요!":"동점 후보와는 다른 유형이에요."}</p>}
+          </div>
+        </>
+      ) : (
+        <>
+          {isTie&&chosenTie&&(
+            <div className="no-print" style={{background:"#fffbf0",border:"1px solid #f39c1240",borderRadius:10,padding:"10px 14px",marginBottom:12,fontSize:"0.76rem",color:"#888",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <span>동점 {tiedIds.length}개 중 <strong style={{color:top.color}}>{top.type}</strong>을 선택해서 보고 있어요</span>
+              <button onClick={()=>setChosenTie(null)} style={{background:"none",border:"none",color:"#2980b9",fontSize:"0.74rem",cursor:"pointer",fontFamily:"inherit"}}>다른 유형 보기</button>
+            </div>
+          )}
+          <div className="print-card" style={{background:`linear-gradient(135deg,${top?.color}18,${top?.color}35)`,border:`2px solid ${top?.color}`,borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
+            <div style={{...S.appleCircle,background:top?.color,marginBottom:12}}>{top?.emoji}</div>
+            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
+            <h2 style={{color:top?.color,fontSize:"1.65rem",margin:"0 0 4px",fontFamily:"Georgia,serif"}}>{top?.type}</h2>
+            <p style={{color:top?.color,fontSize:"0.83rem",margin:"0 0 12px"}}>{top?.name}</p>
+            <p style={{fontFamily:"Georgia,serif",color:"#444",fontSize:"0.9rem",margin:"0 0 14px"}}>"{top?.tagline}"</p>
+            <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
+              {top?.keywords.map(k=><span key={k} style={{border:`1.5px solid ${top?.color}`,color:top?.color,borderRadius:50,padding:"2px 12px",fontSize:"0.74rem",fontWeight:500}}>{k}</span>)}
+            </div>
+          </div>
 
-      <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:18,marginBottom:14}}>
-        <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 나는 어떤 리더인가?</h3>
-        <p style={{fontSize:"0.86rem",color:"#444",lineHeight:1.8,margin:"0 0 14px"}}>{top?.detail}</p>
-        <div style={{background:"#fafafa",borderRadius:10,padding:"12px 14px"}}>
-          <p style={{fontSize:"0.75rem",fontWeight:700,color:"#888",margin:"0 0 8px"}}>이런 순간에 빛납니다 ✨</p>
-          {top?.situations.map((s,i)=><div key={i} style={{display:"flex",gap:8,marginBottom:6}}>
-            <span style={{color:top?.color,fontWeight:700,fontSize:"0.8rem",flexShrink:0}}>0{i+1}</span>
-            <span style={{fontSize:"0.8rem",color:"#555",lineHeight:1.6}}>{s}</span>
-          </div>)}
-        </div>
-      </div>
+          <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:18,marginBottom:14}}>
+            <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 나는 어떤 리더인가?</h3>
+            <p style={{fontSize:"0.86rem",color:"#444",lineHeight:1.8,margin:"0 0 14px"}}>{top?.detail}</p>
+            <div style={{background:"#fafafa",borderRadius:10,padding:"12px 14px"}}>
+              <p style={{fontSize:"0.75rem",fontWeight:700,color:"#888",margin:"0 0 8px"}}>이런 순간에 빛납니다 ✨</p>
+              {top?.situations.map((s,i)=><div key={i} style={{display:"flex",gap:8,marginBottom:6}}>
+                <span style={{color:top?.color,fontWeight:700,fontSize:"0.8rem",flexShrink:0}}>0{i+1}</span>
+                <span style={{fontSize:"0.8rem",color:"#555",lineHeight:1.6}}>{s}</span>
+              </div>)}
+            </div>
+          </div>
 
-      <div style={{background:`${top?.color}10`,border:`1px solid ${top?.color}30`,borderRadius:16,padding:16,marginBottom:14}}>
-        <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 나와 닮은 리더</h3>
-        <p style={{fontSize:"0.84rem",color:"#444",lineHeight:1.7,margin:0}}>{top?.famousExample}</p>
-      </div>
+          <div className="print-card" style={{background:`${top?.color}10`,border:`1px solid ${top?.color}30`,borderRadius:16,padding:16,marginBottom:14}}>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 나와 닮은 리더</h3>
+            <p style={{fontSize:"0.84rem",color:"#444",lineHeight:1.7,margin:0}}>{top?.famousExample}</p>
+          </div>
+        </>
+      )}
 
-      <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+      <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>📊 나의 사과 점수</h3>
-        {sorted.map(([id,score])=>{const a=APPLES.find(x=>x.id===id);return(<div key={id} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+        {orderedApples().map(a=>{const score=scores[a.id]||0;return(<div key={a.id} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
           <span style={{fontSize:"0.9rem",width:22}}>{a?.emoji}</span>
           <span style={{fontSize:"0.68rem",color:"#666",width:60,flexShrink:0}}>{a?.type}</span>
           <div style={{flex:1,height:7,background:"#f0f0f0",borderRadius:4,overflow:"hidden"}}><div style={{height:"100%",width:`${(score/15)*100}%`,background:a?.color,borderRadius:4,transition:"width 0.8s ease"}}/></div>
@@ -679,7 +728,7 @@ export default function App() {
       </div>
 
       {/* ── 3축 좌표 (NEW) ── */}
-      <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+      <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🧭 나의 3축 좌표</h3>
         <AxisBar group={{...AXIS_GROUPS.ta,leftVal:axisScores.ta.left,rightVal:axisScores.ta.right}}/>
         <AxisBar group={{...AXIS_GROUPS.sv,leftVal:axisScores.sv.left,rightVal:axisScores.sv.right}}/>
@@ -687,8 +736,9 @@ export default function App() {
         <p style={{fontSize:"0.7rem",color:"#999",margin:"4px 0 0",lineHeight:1.5}}>8유형 점수를 세 가지 축으로 재구성한 결과입니다. 한쪽으로 뚜렷할수록 그 성향이 강하고, 중앙에 가까울수록 상황에 따라 유연하게 오갑니다.</p>
       </div>
 
+      {showFull&&<>
       {subApple&&combo&&(
-        <div style={{background:"#fff",border:`2px solid ${top?.color}`,borderRadius:16,padding:16,marginBottom:14}}>
+        <div className="print-card" style={{background:"#fff",border:`2px solid ${top?.color}`,borderRadius:16,padding:16,marginBottom:14}}>
           <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🍎✨ 나의 사과 조합</h3>
           <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12,flexWrap:"wrap"}}>
             <span style={{background:top?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{top?.emoji} {top?.type}</span>
@@ -702,7 +752,7 @@ export default function App() {
         </div>
       )}
 
-      <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+      <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>💡 직관 vs 행동 비교</h3>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12}}>
           <div style={{flex:1,border:`2px solid ${intA?.color}`,borderRadius:10,padding:"10px 6px",textAlign:"center"}}>
@@ -720,7 +770,7 @@ export default function App() {
         </p>
       </div>
 
-      <div style={{background:"#f9f9f9",borderRadius:16,padding:16,marginBottom:14}}>
+      <div className="print-card" style={{background:"#f9f9f9",borderRadius:16,padding:16,marginBottom:14}}>
         <div style={{marginBottom:12}}>
           <span style={{fontSize:"0.75rem",fontWeight:700,color:"#27ae60"}}>💪 핵심 강점</span>
           <p style={{fontSize:"0.83rem",color:"#444",margin:"4px 0 0",lineHeight:1.65}}>{top?.strength}</p>
@@ -735,7 +785,7 @@ export default function App() {
         </div>
       </div>
 
-      <div style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+      <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🤝 사과 궁합</h3>
         <div style={{display:"flex",gap:8}}>
           <div style={{flex:1,background:`${complementApple?.color}15`,border:`1px solid ${complementApple?.color}40`,borderRadius:12,padding:"12px 10px",textAlign:"center"}}>
@@ -750,6 +800,7 @@ export default function App() {
           </div>
         </div>
       </div>
+      </>}
       </div>
 
       <div style={{textAlign:"center"}} className="no-print">
@@ -791,7 +842,7 @@ function AxisBar({group}){
     </div>
   );
 }
-function Page({children,bg="linear-gradient(160deg,#fff9f0,#ffe8d6)"}){return(<div style={{minHeight:"100vh",background:bg,display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px 60px",fontFamily:"'Noto Sans KR',sans-serif"}}><style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}button{cursor:pointer;}@media print{body *{visibility:hidden;}.print-area,.print-area *{visibility:visible;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}.print-area{position:absolute;left:0;top:0;width:100%;}.no-print{display:none !important;}}`}</style>{children}</div>);}
+function Page({children,bg="linear-gradient(160deg,#fff9f0,#ffe8d6)"}){return(<div style={{minHeight:"100vh",background:bg,display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px 60px",fontFamily:"'Noto Sans KR',sans-serif"}}><style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}button{cursor:pointer;}@media print{body *{visibility:hidden;}.print-area,.print-area *{visibility:visible;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}.print-area{position:absolute;left:0;top:0;width:100%;}.no-print{display:none !important;}.print-card{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;}}`}</style>{children}</div>);}
 function Box({children,center=false}){return<div style={{background:"#fff",borderRadius:24,padding:"32px 22px",maxWidth:480,width:"100%",boxShadow:"0 16px 48px rgba(0,0,0,0.09)",textAlign:center?"center":"left"}}>{children}</div>;}
 function DashCard({title,children,warn=false}){return(<div style={{background:warn?"#1a0f00":"#0d0d22",border:`1px solid ${warn?"#3a2000":"#1e1e3a"}`,borderRadius:16,padding:20,marginBottom:14}}><h3 style={{margin:"0 0 14px",fontSize:"0.88rem",color:warn?"#f39c12":"#aaa",fontWeight:700}}>{title}</h3>{children}</div>);}
 function FloatingApples(){return(<div style={{display:"flex",justifyContent:"center",gap:8,marginBottom:16,fontSize:"1.8rem"}}>{["🍎","🍏","🍎","🍏","🍎"].map((e,i)=>(<span key={i} style={{display:"inline-block",animation:`fl${i} ${2.5+i*0.3}s ease-in-out infinite`,animationDelay:`${i*0.4}s`}}>{e}<style>{`@keyframes fl${i}{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}`}</style></span>))}</div>);}
