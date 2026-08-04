@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 
 const FB_URL = "https://apple-leadership-default-rtdb.firebaseio.com";
 const DB = {
@@ -24,7 +25,11 @@ const APPLES = [
     growth:"분석이 끝나지 않아도 '가설'로 먼저 실행해보는 연습이 필요합니다. 완벽한 답을 기다리기보다, 60% 확신에서 시작하는 용기를 가져보세요.",
     famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문에서 상대성이론을 발견했습니다.",
     complement:"tell", tension:"jobs",
-    questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다","나는 이해되지 않으면 불편해서 끝까지 파고드는 편이다","많은 사람이 동의해도, 근거가 약하면 선뜻 따르지 않는다"] },
+    questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다","나는 이해되지 않으면 불편해서 끝까지 파고드는 편이다","많은 사람이 동의해도, 근거가 약하면 선뜻 따르지 않는다"],
+    theory:{psych:"카너먼의 시스템1/2 사고(2011) — 빠른 직관과 느린 숙고를 구분",leadership:"코칭 리더십(Goleman, 2000) — 답을 주기보다 질문으로 스스로 찾게 만드는 방식"},
+    shineIn:["충분한 검토 시간이 주어질 때","깊이 있는 토론 문화에서"],
+    hardWhen:["\"일단 해보고 생각하자\"는 압박을 받을 때","근거 없는 주장을 따라야 할 때"],
+    orgProfile:{strength:"의사결정의 깊이",shadow:"회의가 길어지고 실행 타이밍을 놓칠 수 있음",need:"'언제 실행할 것인가'의 기준"} },
 
   { id:"jobs", emoji:"🍏", name:"잡스의 사과", type:"창조혁신형", color:"#27ae60", bg:"#f0fff4",
     keywords:["혁신","실행","용기"],
@@ -37,7 +42,11 @@ const APPLES = [
     growth:"혼자 달리는 속도를 팀의 속도에 맞추는 연습이 필요합니다. 내 아이디어를 팀과 함께 다듬는 과정이 결과의 완성도를 높입니다.",
     famousExample:"🚀 일론 머스크는 '전기차는 불가능하다'는 상식을 깨고 테슬라를 만들었습니다.",
     complement:"cezanne", tension:"newton",
-    questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다","나는 지금 없는 것을 상상하고 만들어보는 데 끌린다","완벽한 계획을 기다리기보다 부딪히며 배우는 게 더 빠르다고 믿는다"] },
+    questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다","나는 지금 없는 것을 상상하고 만들어보는 데 끌린다","완벽한 계획을 기다리기보다 부딪히며 배우는 게 더 빠르다고 믿는다"],
+    theory:{psych:"드웩의 성장 마인드셋(2006) — 능력은 노력으로 발전한다는 믿음",leadership:"변혁적 리더십(Burns 1978/Bass 1985) — 영감적 동기부여와 지적 자극"},
+    shineIn:["실패가 용납되는 문화에서","빠른 실행이 환영받을 때"],
+    hardWhen:["기존 방식을 고수해야 할 때","완벽한 계획부터 요구받을 때"],
+    orgProfile:{strength:"에너지, 빠른 적응",shadow:"완성이 부족한 채로 남을 수 있음",need:"완수의 문화"} },
 
   { id:"adam", emoji:"🍑", name:"아담과 이브의 사과", type:"선택책임형", color:"#d35400", bg:"#fff8f0",
     keywords:["선택","책임","진정성"],
@@ -50,7 +59,11 @@ const APPLES = [
     growth:"모든 것을 혼자 짊어지려 하지 마세요. 책임을 나누는 것도 리더십입니다. '우리의 책임'으로 확장하면 팀 전체가 성장합니다.",
     famousExample:"🏈 손흥민은 팀이 질 때마다 '내가 더 잘했어야 했다'고 먼저 말합니다.",
     complement:"eris", tension:"snowwhite",
-    questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다","나는 한 약속은 상황이 바뀌어도 지키려고 노력한다","결과가 안 좋을 때, 내가 무엇을 다르게 할 수 있었는지부터 돌아본다"] },
+    questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다","나는 한 약속은 상황이 바뀌어도 지키려고 노력한다","결과가 안 좋을 때, 내가 무엇을 다르게 할 수 있었는지부터 돌아본다"],
+    theory:{psych:"반두라의 자기효능감·내적귀인(1977/1997), 브라운의 취약성 연구(2012)",leadership:"진성 리더십(George, 2003) — 자기인식과 관계적 투명성"},
+    shineIn:["원칙과 약속이 지켜지는 조직에서","말과 행동이 일치하는 동료와 있을 때"],
+    hardWhen:["책임 회피가 일상인 조직에 있을 때","혼자 모든 책임을 떠안아야 할 때"],
+    orgProfile:{strength:"신뢰, 안정적 관계 구축",shadow:"변화에 느리고 기회를 놓칠 수 있음",need:"안전한 실험 공간"} },
 
   { id:"snowwhite", emoji:"🍎", name:"백설공주의 사과", type:"위기감지형", color:"#8e44ad", bg:"#fdf0ff",
     keywords:["판단","직관","리스크"],
@@ -63,7 +76,11 @@ const APPLES = [
     growth:"모든 것을 의심하다 보면 팀의 에너지가 떨어질 수 있습니다. 리스크를 발견했다면 해결책도 함께 제시하는 습관을 만들어보세요.",
     famousExample:"🔍 워렌 버핏은 '이해할 수 없는 사업에는 투자하지 않는다'는 원칙으로 수많은 버블을 피했습니다.",
     complement:"hercules", tension:"adam",
-    questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다","다들 낙관적일 때 오히려 '혹시나' 하는 생각이 먼저 든다","중요한 결정 앞에서는 최악의 경우를 미리 그려보는 편이다"] },
+    questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다","다들 낙관적일 때 오히려 '혹시나' 하는 생각이 먼저 든다","중요한 결정 앞에서는 최악의 경우를 미리 그려보는 편이다"],
+    theory:{psych:"카너먼의 정서 휴리스틱(2011), 에번스의 리스크 인텔리전스(2012)",leadership:"위기관리 리더십·센스메이킹(Boin et al., 2005) — 위기 발생 전 신호를 읽는 선제적 감지"},
+    shineIn:["신중한 의사결정이 존중받을 때","충분한 검토 시간이 있을 때"],
+    hardWhen:["경고가 부정적이라고 치부될 때","무계획적인 빠른 실행을 강요받을 때"],
+    orgProfile:{strength:"안정성, 촘촘한 리스크 관리",shadow:"기회 앞에서 머뭇거릴 수 있음",need:"'최소 조건'의 설정"} },
 
   { id:"tell", emoji:"🎯", name:"윌리엄 텔의 사과", type:"성과실행형", color:"#2980b9", bg:"#f0f8ff",
     keywords:["집중","압박","결과"],
@@ -76,7 +93,11 @@ const APPLES = [
     growth:"결과를 만드는 과정에서 팀원들이 지쳐있지 않은지 돌아보세요. 성과와 함께 사람을 챙기는 리더가 오래 갑니다.",
     famousExample:"⚽ 박지성은 '가장 힘든 경기에서 가장 많이 뛴다'는 평가를 받은 실행형 리더였습니다.",
     complement:"newton", tension:"cezanne",
-    questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다","마감이 임박하면 잡생각이 사라지고 해야 할 일만 보인다","복잡한 상황일수록 핵심만 간결하게 정리해서 움직인다"] },
+    questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다","마감이 임박하면 잡생각이 사라지고 해야 할 일만 보인다","복잡한 상황일수록 핵심만 간결하게 정리해서 움직인다"],
+    theory:{psych:"더크워스의 그릿(2016) — 열정과 인내의 조합",leadership:"거래적 리더십(Burns 1978/Bass 1985) — 명확한 목표-보상 교환"},
+    shineIn:["목표와 기한이 명확할 때","결과로 공정하게 평가받는 문화에서"],
+    hardWhen:["목표 없이 흘러가는 회의가 계속될 때","모호한 지시만 받을 때"],
+    orgProfile:{strength:"실행력, 위기 안정감",shadow:"팀원 소진과 번아웃 위험",need:"'사람을 보는' 지표"} },
 
   { id:"cezanne", emoji:"🎨", name:"세잔의 사과", type:"장인완성형", color:"#16a085", bg:"#f0fffc",
     keywords:["반복","완성도","집요함"],
@@ -89,7 +110,11 @@ const APPLES = [
     growth:"완벽을 추구하다 타이밍을 놓치는 경우가 있습니다. '80점짜리 지금'이 '100점짜리 나중'보다 나을 때를 구별하는 감각을 키워보세요.",
     famousExample:"🏀 스테판 커리는 매일 같은 슛 동작을 수천 번 반복해 역사상 최고의 슈터가 됐습니다.",
     complement:"jobs", tension:"tell",
-    questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다","다른 사람은 만족해도 나는 한 번 더 다듬고 싶어질 때가 많다","눈에 잘 안 띄는 디테일까지 신경 쓰는 편이다"] },
+    questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다","다른 사람은 만족해도 나는 한 번 더 다듬고 싶어질 때가 많다","눈에 잘 안 띄는 디테일까지 신경 쓰는 편이다"],
+    theory:{psych:"에릭슨의 의도적 연습(1993), 칙센트미하이의 몰입 이론(1990)",leadership:"선도형 리더십(Goleman, 2000) — 말이 아니라 결과물로 기준을 세우는 방식"},
+    shineIn:["전문성과 완성도를 인정하는 문화에서","충분한 시간이 주어질 때"],
+    hardWhen:["대충 빨리 내놓으라는 압박을 받을 때","속도만 요구하는 분위기일 때"],
+    orgProfile:{strength:"품질, 깊은 전문성",shadow:"변화에 느리게 반응할 수 있음",need:"'충분히 좋은 것'의 기준"} },
 
   { id:"hercules", emoji:"💪", name:"헤라클레스의 황금 사과", type:"목표완수형", color:"#f39c12", bg:"#fffbf0",
     keywords:["목표","불굴","완수"],
@@ -102,7 +127,11 @@ const APPLES = [
     growth:"목표를 향해 달리는 과정에서 팀원의 체력과 감정을 점검하세요. 혼자 완수하는 것보다 함께 완수하는 것이 더 오래 지속됩니다.",
     famousExample:"🏔️ 엄홍길 대장은 히말라야 8000m 봉우리 16좌를 완등하며 '끝까지'의 의미를 증명했습니다.",
     complement:"snowwhite", tension:"eris",
-    questions:["불가능해 보이는 목표도 일단 도전해본다","포기하고 싶은 순간에도 끝까지 완수하는 편이다","목표를 향해 가는 과정에서 장애물이 나를 더 강하게 만든다","시작한 일을 끝맺지 못하면 마음이 계속 남는다","힘든 순간에도 '그래도 여기까지 왔는데'라는 생각으로 버틴다"] },
+    questions:["불가능해 보이는 목표도 일단 도전해본다","포기하고 싶은 순간에도 끝까지 완수하는 편이다","목표를 향해 가는 과정에서 장애물이 나를 더 강하게 만든다","시작한 일을 끝맺지 못하면 마음이 계속 남는다","힘든 순간에도 '그래도 여기까지 왔는데'라는 생각으로 버틴다"],
+    theory:{psych:"로크&래덤의 목표설정이론(1990), 데시&라이언의 자기결정이론(1985)",leadership:"셀프리더십(Manz, 1986) — 스스로 동기부여하고 방향을 설정하는 힘"},
+    shineIn:["도전적이고 의미있는 목표가 있을 때","끝까지 가는 것을 가치있게 여기는 문화에서"],
+    hardWhen:["팀원들이 지쳐 따라오지 못할 때","목표 자체를 계속 재검토해야 할 때"],
+    orgProfile:{strength:"끈기, 위기에서 강해짐",shadow:"방향 수정이 어려울 수 있음",need:"정기적인 방향 점검"} },
 
   { id:"eris", emoji:"✨", name:"에리스의 황금 사과", type:"변화촉진형", color:"#e74c3c", bg:"#fff0f0",
     keywords:["도전","갈등","촉매"],
@@ -115,7 +144,11 @@ const APPLES = [
     growth:"변화를 촉구할 때 대안도 함께 준비해주세요. 판을 흔드는 것과 판을 새로 짜는 것은 함께 이뤄져야 진짜 변화가 됩니다.",
     famousExample:"🎤 방탄소년단은 기존 K-POP의 문법을 거부하고 자신들만의 서사로 세계를 바꿨습니다.",
     complement:"adam", tension:"hercules",
-    questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다","'원래 이렇게 해왔다'는 말을 들으면 오히려 의문이 든다","모두가 침묵할 때, 그 침묵을 깨는 쪽은 대체로 나다"] },
+    questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다","'원래 이렇게 해왔다'는 말을 들으면 오히려 의문이 든다","모두가 침묵할 때, 그 침묵을 깨는 쪽은 대체로 나다"],
+    theory:{psych:"코저의 갈등의 기능(1956) — 갈등의 조직적 순기능",leadership:"적응적 리더십(Heifetz, 1994) — 갈등의 온도를 조절하며 변화를 이끄는 방식"},
+    shineIn:["발언의 자유가 보장될 때","문제제기가 기여로 인정받는 문화에서"],
+    hardWhen:["\"원래 이렇게 해왔다\"는 말이 모든 제안을 막을 때","문제제기가 문제아 취급받을 때"],
+    orgProfile:{strength:"도전 정신, 생존력",shadow:"변화 피로, 완성이 부족할 수 있음",need:"'지킬 것'의 명확화"} },
 ];
 
 const TEAM_DYNAMICS = {
@@ -239,6 +272,23 @@ const calcAxisScores=(scores)=>{
 const ORDER_1_TO_8=["newton","snowwhite","jobs","eris","cezanne","adam","tell","hercules"];
 const orderedApples=()=>ORDER_1_TO_8.map(id=>APPLES.find(a=>a.id===id));
 
+function synthesizeAxisSentence(axisScores){
+  const clear=[],flexible=[];
+  const entries=[["ta",AXIS_GROUPS.ta],["sv",AXIS_GROUPS.sv],["ar",AXIS_GROUPS.ar]];
+  entries.forEach(([key,g])=>{
+    const {left,right}=axisScores[key];
+    const total=left+right||1;
+    const diff=Math.abs(left-right)/total;
+    if(diff<0.1){flexible.push(left>=right?`${g.leftLabel}·${g.rightLabel}`:`${g.rightLabel}·${g.leftLabel}`);}
+    else{clear.push(left>right?g.leftLabel:g.rightLabel);}
+  });
+  let sentence="";
+  if(clear.length){sentence+=`당신은 ${clear.join('·')} 성향이 뚜렷합니다.`;}
+  if(flexible.length){sentence+=(sentence?" ":"")+`${flexible.map(f=>f.split('·').join('/')).join(', ')}은(는) 상황에 따라 유연하게 오갑니다.`;}
+  if(!sentence){sentence="세 축 모두 균형있게 발달해 있어요.";}
+  return sentence;
+}
+
 function getTeamDynamics(dashData) {
   if (dashData.length < 2) return null;
   const dist = Object.fromEntries(APPLES.map(a=>[a.id,0]));
@@ -262,10 +312,8 @@ export default function App() {
   const [sess,setSess]=useState(null);
   const [codeIn,setCodeIn]=useState("");
   const [nameIn,setNameIn]=useState("");
-  const [teamIn,setTeamIn]=useState("");
   const [joinErr,setJoinErr]=useState("");
   const [sessName,setSessName]=useState("");
-  const [teamsRaw,setTeamsRaw]=useState("영업팀\n마케팅팀\n개발팀\n인사팀");
   const [newCode,setNewCode]=useState("");
   const [pInfo,setPInfo]=useState(null);
   const [storyI,setStoryI]=useState(0);
@@ -275,6 +323,7 @@ export default function App() {
   const [qI,setQI]=useState(0);
   const [scores,setScores]=useState({});
   const [chosenTie,setChosenTie]=useState(null);
+  const [summaryMode,setSummaryMode]=useState(false);
   const [submitted,setSubmitted]=useState(false);
   const [dashData,setDashData]=useState([]);
   const [lastRefresh,setLastRefresh]=useState(null);
@@ -298,7 +347,7 @@ export default function App() {
     if(sc==="p_result"&&!submitted&&Object.keys(scores).length>0){
       const top=topApple(scores);
       if(!isOpen){
-        DB.saveResult(code,pInfo?.name||"익명",{team:pInfo?.team||"",topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then(()=>setSubmitted(true));
+        DB.saveResult(code,pInfo?.name||"익명",{topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then(()=>setSubmitted(true));
       } else {
         setSubmitted(true);
       }
@@ -319,7 +368,7 @@ export default function App() {
     else if(appleI>0){setAppleI(appleI-1);setQI(4);}
   };
 
-  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setTeamIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSubmitted(false);setDashData([]);setDashTab("overview");};
+  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSummaryMode(false);setSubmitted(false);setDashData([]);setDashTab("overview");};
 
   const exportExcel=()=>{
     if(!dashData.length)return;
@@ -370,7 +419,7 @@ export default function App() {
       <Label>이름</Label>
       <Input placeholder="이름을 입력하세요" value={nameIn} onChange={e=>setNameIn(e.target.value)}/>
       <Btn style={{marginTop:8,opacity:nameIn.trim()?1:0.4}} disabled={!nameIn.trim()} onClick={()=>{
-        setPInfo({name:nameIn.trim(),team:"전자책독자"});
+        setPInfo({name:nameIn.trim()});
         setSc("p_story");
       }}>진단 시작하기 →</Btn>
     </Box></Page>
@@ -382,13 +431,10 @@ export default function App() {
       <h2 style={S.h2}>👨‍🏫 세션 만들기</h2>
       <Label>강의·교육 이름</Label>
       <Input placeholder="예) 2025 리더십 워크샵" value={sessName} onChange={e=>setSessName(e.target.value)}/>
-      <Label>팀/부서 목록 <span style={S.hint}>(한 줄에 하나씩)</span></Label>
-      <textarea style={{...S.input,height:120,resize:"none"}} value={teamsRaw} onChange={e=>setTeamsRaw(e.target.value)}/>
       <Btn style={{marginTop:4}} disabled={loading} onClick={async()=>{
         setLoading(true);
         const c=makeCode();
-        const teams=teamsRaw.split("\n").map(x=>x.trim()).filter(Boolean);
-        const data={sessionName:sessName||"리더십 진단",teams,createdAt:Date.now()};
+        const data={sessionName:sessName||"리더십 진단",createdAt:Date.now()};
         await DB.setSession(c,data);
         setCode(c);setSess(data);setNewCode(c);setLoading(false);
       }}>{loading?"생성 중...":"🍎 세션 코드 생성"}</Btn>
@@ -408,7 +454,37 @@ export default function App() {
     const dynamics=getTeamDynamics(dashData);
     const dist=dynamics?.dist||Object.fromEntries(APPLES.map(a=>[a.id,0]));
     const maxCnt=Math.max(...Object.values(dist),1);
-    const teams=sess?.teams||[];
+
+    // ── 팀 전체 3축 좌표 (NEW) ──
+    const aggScores={};
+    APPLES.forEach(a=>{aggScores[a.id]=dashData.reduce((sum,r)=>sum+(r.scores?.[a.id]||0),0);});
+    const teamAxisScores=calcAxisScores(aggScores);
+
+    // ── 팀 대표 유형 (NEW, 동점규칙 적용) ──
+    const distArr=orderedApples().map(a=>({...a,cnt:dist[a.id]})).sort((a,b)=>b.cnt-a.cnt);
+    const topCnt=distArr[0]?.cnt||0;
+    const secondCnt=distArr[1]?.cnt||0;
+    const repClear=topCnt>0&&(topCnt-secondCnt)>=2;
+    const repTypes=topCnt===0?[]:repClear?[distArr[0]]:distArr.filter(d=>d.cnt>0&&(topCnt-d.cnt)<=1);
+
+    // ── 실제 긴장·시너지 페어 자동탐지 (NEW) ──
+    const namedTensions=[],namedSynergies=[];
+    for(let i=0;i<dashData.length;i++){
+      for(let j=i+1;j<dashData.length;j++){
+        const r1=dashData[i],r2=dashData[j];
+        if(TEAM_DYNAMICS.tensions.some(t=>(t.a===r1.topTypeId&&t.b===r2.topTypeId)||(t.a===r2.topTypeId&&t.b===r1.topTypeId)))namedTensions.push([r1,r2]);
+        if(TEAM_DYNAMICS.synergies.some(t=>(t.a===r1.topTypeId&&t.b===r2.topTypeId)||(t.a===r2.topTypeId&&t.b===r1.topTypeId)))namedSynergies.push([r1,r2]);
+      }
+    }
+
+    // ── 경향성 강도 팀 평균 (NEW) ──
+    const avgGap=total?dashData.reduce((sum,r)=>{
+      const vals=Object.values(r.scores||{});
+      if(!vals.length)return sum;
+      const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
+      return sum+(Math.max(...vals)-avg);
+    },0)/total:0;
+
     return(
       <Page bg="#1a1a2e">
         <div style={{maxWidth:640,width:"100%"}}>
@@ -441,18 +517,48 @@ export default function App() {
                 );})}
               </div>
             </DashCard>
-            {teams.length>0&&total>0&&(
-              <DashCard title="🏢 팀별 사과 분포">
-                {teams.map(tm=>{
-                  const members=dashData.filter(r=>r.team===tm);
-                  if(!members.length)return(<div key={tm} style={{marginBottom:10,paddingBottom:10,borderBottom:"1px solid #1e1e3a"}}><span style={{fontSize:"0.78rem",color:"#555"}}>{tm} · 아직 참여자 없음</span></div>);
-                  return(<div key={tm} style={{marginBottom:14}}>
-                    <div style={{fontSize:"0.78rem",fontWeight:700,color:"#aaa",marginBottom:7}}>{tm} <span style={{color:"#555",fontWeight:400}}>({members.length}명)</span></div>
-                    <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-                      {members.map((m,i)=>{const a=APPLES.find(x=>x.id===m.topTypeId);return(<div key={i} style={{background:`${a?.color}25`,border:`1px solid ${a?.color}55`,borderRadius:8,padding:"4px 10px",fontSize:"0.72rem",color:a?.color,fontWeight:600}}>{a?.emoji} {m.name}</div>);})}
+            {total>0&&(
+              <DashCard title="🎯 팀 대표 유형">
+                {repClear ? (
+                  <div style={{display:"flex",alignItems:"center",gap:10}}>
+                    <span style={{fontSize:"1.6rem"}}>{repTypes[0].emoji}</span>
+                    <div>
+                      <div style={{color:repTypes[0].color,fontWeight:700,fontSize:"0.9rem"}}>{repTypes[0].type} ({repTypes[0].cnt}명)</div>
+                      <div style={{fontSize:"0.72rem",color:"#888",marginTop:2}}>{repTypes[0].orgProfile?.strength} · 그림자: {repTypes[0].orgProfile?.shadow}</div>
                     </div>
-                  </div>);
-                })}
+                  </div>
+                ):(
+                  <>
+                    <p style={{fontSize:"0.76rem",color:"#888",margin:"0 0 10px"}}>특정 유형이 뚜렷하게 우세하지 않고, 아래 유형들이 고르게 섞여 있는 팀이에요.</p>
+                    <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                      {repTypes.map(t=>(<span key={t.id} style={{background:`${t.color}22`,border:`1px solid ${t.color}55`,borderRadius:20,padding:"4px 10px",fontSize:"0.74rem",color:t.color,fontWeight:600}}>{t.emoji} {t.type} ({t.cnt})</span>))}
+                    </div>
+                  </>
+                )}
+              </DashCard>
+            )}
+            {total>0&&(
+              <DashCard title="🧭 팀 전체 3축 좌표">
+                <div>
+                  {[["ta",AXIS_GROUPS.ta],["sv",AXIS_GROUPS.sv],["ar",AXIS_GROUPS.ar]].map(([key,g])=>{
+                    const {left,right}=teamAxisScores[key];const t=left+right||1;const lp=(left/t)*100;
+                    return(<div key={key} style={{marginBottom:10}}>
+                      <div style={{display:"flex",justifyContent:"space-between",fontSize:"0.7rem",marginBottom:3}}>
+                        <span style={{color:g.leftColor,fontWeight:700}}>{g.leftLabel} {left}</span>
+                        <span style={{color:g.rightColor,fontWeight:700}}>{right} {g.rightLabel}</span>
+                      </div>
+                      <div style={{width:"100%",height:8,borderRadius:4,overflow:"hidden",display:"flex",background:"#1a1a2e"}}>
+                        <div style={{width:`${lp}%`,background:g.leftColor}}/><div style={{width:`${100-lp}%`,background:g.rightColor}}/>
+                      </div>
+                    </div>);
+                  })}
+                </div>
+              </DashCard>
+            )}
+            {total>0&&(
+              <DashCard title="📈 팀 경향성 강도 (평균)">
+                <div style={{fontSize:"1.3rem",fontWeight:700,color:"#f1c40f",marginBottom:4}}>+{avgGap.toFixed(1)}점</div>
+                <p style={{fontSize:"0.76rem",color:"#888",margin:0,lineHeight:1.6}}>{avgGap>=8?"팀원 대부분이 뚜렷한 주 유형을 가지고 있어요.":avgGap>=4?"적당히 뚜렷한 성향의 팀원들이 모여있어요.":"전반적으로 균형있게 발달한 팀원들이 모여있어요."}</p>
               </DashCard>
             )}
             {dynamics?.missing.length>0&&total>=2&&(
@@ -507,6 +613,22 @@ export default function App() {
                   })}
                 </DashCard>
               )}
+              {(namedTensions.length>0||namedSynergies.length>0)&&(
+                <DashCard title="👥 실제 참여자 긴장·시너지 페어">
+                  {namedSynergies.length>0&&(
+                    <div style={{marginBottom:12}}>
+                      <div style={{fontSize:"0.72rem",fontWeight:700,color:"#f1c40f",marginBottom:6}}>✨ 시너지 페어</div>
+                      {namedSynergies.map(([r1,r2],i)=>(<div key={i} style={{fontSize:"0.78rem",color:"#ccc",marginBottom:4}}>{r1.name}({r1.topType}) ↔ {r2.name}({r2.topType})</div>))}
+                    </div>
+                  )}
+                  {namedTensions.length>0&&(
+                    <div>
+                      <div style={{fontSize:"0.72rem",fontWeight:700,color:"#e74c3c",marginBottom:6}}>⚡ 긴장 페어</div>
+                      {namedTensions.map(([r1,r2],i)=>(<div key={i} style={{fontSize:"0.78rem",color:"#ccc",marginBottom:4}}>{r1.name}({r1.topType}) ↔ {r2.name}({r2.topType})</div>))}
+                    </div>
+                  )}
+                </DashCard>
+              )}
               <DashCard title="💬 강사 피드백 포인트">
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
                   {[
@@ -532,7 +654,6 @@ export default function App() {
                         <span style={{fontSize:"1.1rem"}}>{a?.emoji}</span>
                         <div style={{flex:1}}>
                           <div style={{fontWeight:700,fontSize:"0.85rem",color:"#eee"}}>{r.name}</div>
-                          <div style={{fontSize:"0.7rem",color:"#666"}}>{r.team||"팀 미설정"}</div>
                         </div>
                         <div style={{background:a?.color,color:"#fff",borderRadius:50,padding:"3px 10px",fontSize:"0.7rem",fontWeight:700}}>{a?.type}</div>
                       </div>
@@ -569,20 +690,8 @@ export default function App() {
         setLoading(false);
         if(!s){setJoinErr("세션 코드를 찾을 수 없어요. 강사에게 다시 확인해주세요.");return;}
         setCode(codeIn.trim());setSess(s);
-        if(s.teams?.length>0){setTeamIn(s.teams[0]);setSc("p_team");}
-        else{setPInfo({name:nameIn.trim(),team:""});setSc("p_story");}
+        setPInfo({name:nameIn.trim()});setSc("p_story");
       }}>{loading?"확인 중...":"참여하기 →"}</Btn>
-    </Box></Page>
-  );
-
-  if(sc==="p_team")return(
-    <Page><Box>
-      <h2 style={S.h2}>내 팀/부서를 선택하세요</h2>
-      <p style={{...S.muted,marginBottom:20}}>{sess?.sessionName}</p>
-      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:20}}>
-        {sess?.teams?.map(tm=>(<button key={tm} onClick={()=>setTeamIn(tm)} style={{...S.teamBtn,borderColor:teamIn===tm?"#c0392b":"#e0e0e0",background:teamIn===tm?"#fff5f5":"#fff",color:teamIn===tm?"#c0392b":"#555",fontWeight:teamIn===tm?700:400}}>{teamIn===tm?"✅ ":""}{tm}</button>))}
-      </div>
-      <Btn onClick={()=>{setPInfo({name:nameIn.trim(),team:teamIn});setSc("p_story");}}>선택 완료 →</Btn>
     </Box></Page>
   );
 
@@ -652,9 +761,35 @@ export default function App() {
     const combo=COMBO_RESULTS[comboKey];
     const axisScores=calcAxisScores(scores);
     const showFull=!isTie||chosenTie;
+    const effectiveSummaryMode=summaryMode&&showFull;
 
     return(<Page><Box>
+      {showFull&&(
+        <div className="no-print" style={{textAlign:"center",marginBottom:10}}>
+          <button onClick={()=>setSummaryMode(false)} style={{fontSize:"0.72rem",padding:"5px 12px",borderRadius:20,border:`1px solid ${!summaryMode?"#7A2530":"#ddd"}`,background:!summaryMode?"#7A2530":"#fff",color:!summaryMode?"#fff":"#888",fontFamily:"inherit",cursor:"pointer",marginRight:6}}>상세 보기</button>
+          <button onClick={()=>setSummaryMode(true)} style={{fontSize:"0.72rem",padding:"5px 12px",borderRadius:20,border:`1px solid ${summaryMode?"#7A2530":"#ddd"}`,background:summaryMode?"#7A2530":"#fff",color:summaryMode?"#fff":"#888",fontFamily:"inherit",cursor:"pointer"}}>한 장 요약</button>
+        </div>
+      )}
       <div className="print-area">
+      {effectiveSummaryMode ? (
+        <div className="print-card" style={{background:"#fff",border:`2px solid ${top.color}`,borderRadius:20,padding:20}}>
+          <div style={{textAlign:"center",marginBottom:14}}>
+            <div style={{...S.appleCircle,background:top.color,marginBottom:8,width:56,height:56,fontSize:"1.5rem"}}>{top.emoji}</div>
+            <p style={{color:"#888",fontSize:"0.7rem",margin:"0 0 2px"}}>나의 리더십 유형</p>
+            <h2 style={{color:top.color,fontSize:"1.4rem",margin:"0 0 2px",fontFamily:"Georgia,serif"}}>{top.type}</h2>
+            <p style={{fontSize:"0.78rem",color:"#666",fontStyle:"italic"}}>"{top.tagline}"</p>
+          </div>
+          {subApple&&(
+            <div style={{display:"flex",justifyContent:"center",gap:16,marginBottom:14,fontSize:"0.76rem"}}>
+              <span>주유형 <strong style={{color:top.color}}>{top.type}</strong> ({scores[top.id]}점)</span>
+              <span>보조 <strong style={{color:subApple.color}}>{subApple.type}</strong> ({scores[subApple.id]}점)</span>
+            </div>
+          )}
+          <div style={{background:"#fafafa",borderRadius:10,padding:"10px 12px",marginBottom:10,fontSize:"0.78rem",color:"#444",lineHeight:1.6}}>{synthesizeAxisSentence(axisScores)}</div>
+          <p style={{fontSize:"0.78rem",color:"#555",lineHeight:1.7,margin:"0 0 10px"}}>{top.strength}</p>
+          <p style={{fontSize:"0.72rem",color:"#999",lineHeight:1.6,margin:0}}>💡 {top.famousExample}</p>
+        </div>
+      ) : (<>
       {!showFull ? (
         <>
           <div className="print-card" style={{background:"linear-gradient(135deg,#eee,#f8f8f8)",border:"2px solid #ccc",borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
@@ -698,6 +833,23 @@ export default function App() {
             </div>
           </div>
 
+          {subApple&&(
+            <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:"14px 16px",marginBottom:14,display:"flex",gap:10}}>
+              <div style={{flex:1,textAlign:"center",borderRight:"1px solid #eee",paddingRight:10}}>
+                <div style={{fontSize:"0.65rem",color:"#999",marginBottom:4}}>주 유형</div>
+                <div style={{fontSize:"1.3rem"}}>{top?.emoji}</div>
+                <div style={{fontSize:"0.78rem",fontWeight:700,color:top?.color}}>{top?.type}</div>
+                <div style={{fontSize:"0.68rem",color:"#aaa"}}>{scores[top?.id]}점</div>
+              </div>
+              <div style={{flex:1,textAlign:"center"}}>
+                <div style={{fontSize:"0.65rem",color:"#999",marginBottom:4}}>보조 유형</div>
+                <div style={{fontSize:"1.3rem"}}>{subApple.emoji}</div>
+                <div style={{fontSize:"0.78rem",fontWeight:700,color:subApple.color}}>{subApple.type}</div>
+                <div style={{fontSize:"0.68rem",color:"#aaa"}}>{scores[subApple.id]}점</div>
+              </div>
+            </div>
+          )}
+
           <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:18,marginBottom:14}}>
             <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 나는 어떤 리더인가?</h3>
             <p style={{fontSize:"0.86rem",color:"#444",lineHeight:1.8,margin:"0 0 14px"}}>{top?.detail}</p>
@@ -714,8 +866,59 @@ export default function App() {
             <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 나와 닮은 리더</h3>
             <p style={{fontSize:"0.84rem",color:"#444",lineHeight:1.7,margin:0}}>{top?.famousExample}</p>
           </div>
+
+          {/* ── 이론적 근거 (NEW) ── */}
+          <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 10px",color:"#333"}}>📚 이론적 근거</h3>
+            <div style={{marginBottom:8}}>
+              <span style={{fontSize:"0.68rem",fontWeight:700,color:"#888"}}>심리학 이론</span>
+              <p style={{fontSize:"0.8rem",color:"#555",margin:"2px 0 0",lineHeight:1.6}}>{top?.theory?.psych}</p>
+            </div>
+            <div>
+              <span style={{fontSize:"0.68rem",fontWeight:700,color:"#888"}}>리더십 이론</span>
+              <p style={{fontSize:"0.8rem",color:"#555",margin:"2px 0 0",lineHeight:1.6}}>{top?.theory?.leadership}</p>
+            </div>
+          </div>
+
+          {/* ── 빛나는 환경 / 힘든 순간 (NEW) ── */}
+          <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🌤 나에게 맞는 환경</h3>
+            <div style={{marginBottom:10}}>
+              <span style={{fontSize:"0.75rem",fontWeight:700,color:"#27ae60"}}>이런 환경에서 빛나요</span>
+              {top?.shineIn?.map((s,i)=><p key={i} style={{fontSize:"0.8rem",color:"#555",margin:"4px 0 0",lineHeight:1.5}}>• {s}</p>)}
+            </div>
+            <div>
+              <span style={{fontSize:"0.75rem",fontWeight:700,color:"#e67e22"}}>이런 순간은 힘들어요</span>
+              {top?.hardWhen?.map((s,i)=><p key={i} style={{fontSize:"0.8rem",color:"#555",margin:"4px 0 0",lineHeight:1.5}}>• {s}</p>)}
+            </div>
+          </div>
+
+          {/* ── 팀에서 나의 영향력 (강사모드 전용, NEW) ── */}
+          {!isOpen&&top?.orgProfile&&(
+            <div className="print-card" style={{background:"#fff",border:`1.5px dashed ${top?.color}55`,borderRadius:16,padding:16,marginBottom:14}}>
+              <h3 style={{fontSize:"0.85rem",margin:"0 0 4px",color:"#333"}}>👥 팀에서 나의 영향력</h3>
+              <p style={{fontSize:"0.68rem",color:"#aaa",margin:"0 0 10px"}}>내가 리더이거나, 나 같은 사람이 팀에 많을 때</p>
+              <div style={{marginBottom:8}}>
+                <span style={{fontSize:"0.75rem",fontWeight:700,color:"#27ae60"}}>만들어지는 강점</span>
+                <p style={{fontSize:"0.8rem",color:"#555",margin:"2px 0 0",lineHeight:1.6}}>{top.orgProfile.strength}</p>
+              </div>
+              <div style={{marginBottom:8}}>
+                <span style={{fontSize:"0.75rem",fontWeight:700,color:"#e74c3c"}}>주의할 그림자</span>
+                <p style={{fontSize:"0.8rem",color:"#555",margin:"2px 0 0",lineHeight:1.6}}>{top.orgProfile.shadow}</p>
+              </div>
+              <div>
+                <span style={{fontSize:"0.75rem",fontWeight:700,color:"#2980b9"}}>의식적으로 챙길 것</span>
+                <p style={{fontSize:"0.8rem",color:"#555",margin:"2px 0 0",lineHeight:1.6}}>{top.orgProfile.need}</p>
+              </div>
+            </div>
+          )}
         </>
       )}
+
+      <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+        <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🕸 나의 사과 레이더</h3>
+        <RadarChartView scores={scores}/>
+      </div>
 
       <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>📊 나의 사과 점수</h3>
@@ -727,13 +930,37 @@ export default function App() {
         </div>);})}
       </div>
 
+      {/* ── 경향성 강도 (NEW) ── */}
+      {(()=>{
+        const avgScore=Object.values(scores).reduce((a,b)=>a+b,0)/8;
+        const gap=maxScore-avgScore;
+        const level=gap>=8?{label:"매우 뚜렷한 경향성",desc:"한 가지 방식이 확실히 두드러져요. 강점이 분명한 만큼, 다른 방식을 의식적으로 챙기는 연습이 도움이 될 수 있어요."}
+          :gap>=4?{label:"뚜렷한 경향성",desc:"주 유형이 비교적 분명하게 나타나면서도, 다른 강점들도 함께 갖추고 있어요."}
+          :{label:"고르게 발달한 균형형",desc:"여러 유형의 점수가 비슷해요. 상황에 따라 다양한 방식을 유연하게 오갈 수 있는 사람이에요."};
+        return(
+          <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 10px",color:"#333"}}>📈 나의 경향성 강도</h3>
+            <div style={{display:"flex",gap:14,marginBottom:10}}>
+              <div><div style={{fontSize:"0.65rem",color:"#999"}}>8유형 평균</div><div style={{fontSize:"1.1rem",fontWeight:700,color:"#666"}}>{avgScore.toFixed(1)}점</div></div>
+              <div><div style={{fontSize:"0.65rem",color:"#999"}}>최고 점수</div><div style={{fontSize:"1.1rem",fontWeight:700,color:"#333"}}>{maxScore}점</div></div>
+              <div><div style={{fontSize:"0.65rem",color:"#999"}}>격차</div><div style={{fontSize:"1.1rem",fontWeight:700,color:"#7A2530"}}>+{gap.toFixed(1)}</div></div>
+            </div>
+            <div style={{background:"#fafafa",borderRadius:10,padding:"10px 12px"}}>
+              <div style={{fontSize:"0.8rem",fontWeight:700,color:"#333",marginBottom:4}}>{level.label}</div>
+              <div style={{fontSize:"0.76rem",color:"#666",lineHeight:1.6}}>{level.desc}</div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* ── 3축 좌표 (NEW) ── */}
       <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🧭 나의 3축 좌표</h3>
         <AxisBar group={{...AXIS_GROUPS.ta,leftVal:axisScores.ta.left,rightVal:axisScores.ta.right}}/>
         <AxisBar group={{...AXIS_GROUPS.sv,leftVal:axisScores.sv.left,rightVal:axisScores.sv.right}}/>
         <AxisBar group={{...AXIS_GROUPS.ar,leftVal:axisScores.ar.left,rightVal:axisScores.ar.right}}/>
-        <p style={{fontSize:"0.7rem",color:"#999",margin:"4px 0 0",lineHeight:1.5}}>8유형 점수를 세 가지 축으로 재구성한 결과입니다. 한쪽으로 뚜렷할수록 그 성향이 강하고, 중앙에 가까울수록 상황에 따라 유연하게 오갑니다.</p>
+        <p style={{fontSize:"0.7rem",color:"#999",margin:"4px 0 10px",lineHeight:1.5}}>8유형 점수를 세 가지 축으로 재구성한 결과입니다. 한쪽으로 뚜렷할수록 그 성향이 강하고, 중앙에 가까울수록 상황에 따라 유연하게 오갑니다.</p>
+        <div style={{background:"#fafafa",borderRadius:10,padding:"10px 12px",fontSize:"0.8rem",color:"#444",fontWeight:600,lineHeight:1.6}}>{synthesizeAxisSentence(axisScores)}</div>
       </div>
 
       {showFull&&<>
@@ -801,6 +1028,7 @@ export default function App() {
         </div>
       </div>
       </>}
+      </>)}
       </div>
 
       <div style={{textAlign:"center"}} className="no-print">
@@ -822,6 +1050,19 @@ export default function App() {
   return null;
 }
 
+function RadarChartView({scores}){
+  const data=orderedApples().map(a=>({subject:a.type.replace("형",""),value:scores[a.id]||0,fullMark:35}));
+  return(
+    <ResponsiveContainer width="100%" height={260}>
+      <RadarChart data={data} outerRadius="72%">
+        <PolarGrid stroke="#e0e0e0"/>
+        <PolarAngleAxis dataKey="subject" tick={{fontSize:10,fill:"#666"}}/>
+        <PolarRadiusAxis angle={90} domain={[0,35]} tick={{fontSize:8,fill:"#bbb"}}/>
+        <Radar dataKey="value" stroke="#7A2530" fill="#7A2530" fillOpacity={0.35}/>
+      </RadarChart>
+    </ResponsiveContainer>
+  );
+}
 function AxisBar({group}){
   const total=group.leftVal+group.rightVal||1;
   const leftPct=(group.leftVal/total)*100;
@@ -867,5 +1108,4 @@ const S={
   dashStat:{textAlign:"right"},
   dashBigNum:{fontSize:"2.4rem",fontWeight:900,color:"#f1c40f",lineHeight:1},
   ghostDark:{background:"transparent",color:"#555",border:"1px solid #2a2a4a",borderRadius:50,padding:"11px 24px",fontSize:"0.84rem",width:"100%",fontFamily:"inherit",marginTop:4},
-  teamBtn:{border:"2px solid",borderRadius:12,padding:"12px 16px",fontSize:"0.88rem",fontFamily:"inherit",textAlign:"left",transition:"all 0.15s",width:"100%",marginBottom:4},
 };
