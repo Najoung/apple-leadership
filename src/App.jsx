@@ -4,9 +4,9 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 
 const FB_URL = "https://apple-leadership-default-rtdb.firebaseio.com";
 const DB = {
-  async set(path,data){try{await fetch(`${FB_URL}/${path}.json`,{method:"PUT",body:JSON.stringify(data)});return true;}catch{return false;}},
-  async get(path){try{const r=await fetch(`${FB_URL}/${path}.json`);return await r.json();}catch{return null;}},
-  async push(path,data){try{await fetch(`${FB_URL}/${path}.json`,{method:"POST",body:JSON.stringify(data)});return true;}catch{return false;}},
+  async set(path,data){try{const r=await fetch(`${FB_URL}/${path}.json`,{method:"PUT",body:JSON.stringify(data)});if(!r.ok){console.error("DB.set 실패",path,r.status);return false;}return true;}catch(e){console.error("DB.set 네트워크 오류",path,e);return false;}},
+  async get(path){try{const r=await fetch(`${FB_URL}/${path}.json`);if(!r.ok){console.error("DB.get 실패",path,r.status);return null;}return await r.json();}catch(e){console.error("DB.get 네트워크 오류",path,e);return null;}},
+  async push(path,data){try{const r=await fetch(`${FB_URL}/${path}.json`,{method:"POST",body:JSON.stringify(data)});if(!r.ok){console.error("DB.push 실패",path,r.status);return false;}return true;}catch(e){console.error("DB.push 네트워크 오류",path,e);return false;}},
   async setSession(c,d){return this.set(`sessions/${c}`,d);},
   async getSession(c){return this.get(`sessions/${c}`);},
   async saveResult(c,n,d){return this.push(`results/${c}`,{...d,name:n,ts:Date.now()});},
@@ -246,6 +246,10 @@ const COMBO_RESULTS = {
   "eris_hercules":{ title:"변화를 끝까지 이루는 리더", desc:"변화를 시작하고 반드시 완수합니다. 말이 아닌 결과로 변화를 증명하는 가장 강한 변화 리더입니다. 많은 변화 촉진자들이 불씨를 당기지만 불이 꺼지기 전에 자리를 뜨는 반면, 이 조합은 불이 완전히 타오를 때까지 자리를 지킵니다. 변화의 저항이 클수록 오히려 더 강해지는 조합입니다." },
 };
 
+// 관리자(나정님) 전용 마스터 코드 — Firebase 등록 여부와 무관하게 항상 작동
+// 이 값은 소스코드 안에 있으니 원하시면 직접 바꿔도 돼요
+const OWNER_CODE = "ROUN-NAJEONG-2026";
+
 const makeCode = () => {
   const w=["APPLE","NEWTON","JOBS","ERIS","ROUN"][Math.floor(Math.random()*5)];
   return `${w}-${Math.floor(1000+Math.random()*9000)}`;
@@ -330,7 +334,9 @@ export default function App() {
   const [instErr,setInstErr]=useState("");
   const [reconnectIn,setReconnectIn]=useState("");
   const [reconnectErr,setReconnectErr]=useState("");
+  const [createErr,setCreateErr]=useState("");
   const [submitted,setSubmitted]=useState(false);
+  const [saveFailed,setSaveFailed]=useState(false);
   const [dashData,setDashData]=useState([]);
   const [lastRefresh,setLastRefresh]=useState(null);
   const [loading,setLoading]=useState(false);
@@ -350,10 +356,12 @@ export default function App() {
   },[sc,code]);
 
   useEffect(()=>{
-    if(sc==="p_result"&&!submitted&&Object.keys(scores).length>0){
+    if(sc==="p_result"&&!submitted&&!saveFailed&&Object.keys(scores).length>0){
       const top=topApple(scores);
       if(!isOpen){
-        DB.saveResult(code,pInfo?.name||"익명",{topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then(()=>setSubmitted(true));
+        DB.saveResult(code,pInfo?.name||"익명",{topTypeId:top.id,topType:top.type,topEmoji:top.emoji,topColor:top.color,intuitive,scores}).then((ok)=>{
+          if(ok){setSubmitted(true);}else{setSaveFailed(true);}
+        });
       } else {
         setSubmitted(true);
       }
@@ -389,7 +397,7 @@ export default function App() {
     else if(appleI>0){setAppleI(appleI-1);setQI(4);}
   };
 
-  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSummaryMode(false);setSubmitted(false);setDashData([]);setDashTab("overview");setInstCodeIn("");setInstErr("");setReconnectIn("");setReconnectErr("");};
+  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSummaryMode(false);setSubmitted(false);setSaveFailed(false);setDashData([]);setDashTab("overview");setInstCodeIn("");setInstErr("");setReconnectIn("");setReconnectErr("");};
 
   const exportExcel=()=>{
     if(!dashData.length)return;
@@ -423,7 +431,7 @@ export default function App() {
       <FloatingApples/>
       <h1 style={S.bigTitle}>나는 어떤 사과인가?</h1>
       <p style={S.bigSub}>🍎 사과 리더십 유형 진단 시스템</p>
-      <p style={{...S.muted,margin:"0 0 28px",textAlign:"center",lineHeight:1.8}}>강사와 참여자가 실시간으로 연결되어<br/>팀별·부서별 리더십 분포를 한눈에 분석합니다</p>
+      <p style={{...S.muted,margin:"0 0 28px",textAlign:"center",lineHeight:1.8}}>강사와 참여자가 실시간으로 연결되어<br/>우리 팀의 리더십 분포를 한눈에 분석합니다</p>
       <Btn onClick={()=>setSc(instAuthed?"f_create":"f_auth")} style={{marginBottom:12}}>👨‍🏫 강사 모드 — 세션 만들기</Btn>
       <Btn blue onClick={()=>setSc("p_join")}>🙋 참여자 모드 — 진단 참여하기</Btn>
     </Box></Page>
@@ -457,7 +465,15 @@ export default function App() {
       {instErr&&<p style={{color:"#e74c3c",fontSize:"0.8rem",marginBottom:8}}>{instErr}</p>}
       <Btn style={{marginTop:4}} disabled={loading} onClick={async()=>{
         if(!instCodeIn.trim()){setInstErr("인증 코드를 입력해주세요");return;}
-        setLoading(true);setInstErr("");
+        setInstErr("");
+        if(instCodeIn.trim()===OWNER_CODE){
+          const rec={name:"나정(운영자)"};
+          setInstAuthed(rec);
+          try{localStorage.setItem("apple_leadership_instructor",JSON.stringify(rec));}catch{}
+          setSc("f_create");
+          return;
+        }
+        setLoading(true);
         const rec=await DB.checkInstructor(instCodeIn.trim());
         setLoading(false);
         if(!rec){setInstErr("등록되지 않은 코드예요. 발급받은 코드를 다시 확인해주세요.");return;}
@@ -496,12 +512,15 @@ export default function App() {
       <p style={{fontSize:"0.76rem",fontWeight:700,color:"#555",margin:"0 0 8px"}}>✨ 새 세션 만들기</p>
       <Label>강의·교육 이름</Label>
       <Input placeholder="예) 2025 리더십 워크샵" value={sessName} onChange={e=>setSessName(e.target.value)}/>
+      {createErr&&<p style={{color:"#e74c3c",fontSize:"0.8rem",marginBottom:8}}>{createErr}</p>}
       <Btn style={{marginTop:4}} disabled={loading} onClick={async()=>{
-        setLoading(true);
+        setLoading(true);setCreateErr("");
         const c=makeCode();
         const data={sessionName:sessName||"리더십 진단",createdAt:Date.now(),instructor:instAuthed?.name||""};
-        await DB.setSession(c,data);
-        setCode(c);setSess(data);setNewCode(c);setLoading(false);
+        const ok=await DB.setSession(c,data);
+        setLoading(false);
+        if(!ok){setCreateErr("⚠️ 세션 생성에 실패했어요. Firebase 연결 또는 보안 규칙을 확인해주세요.");return;}
+        setCode(c);setSess(data);setNewCode(c);
         window.history.replaceState(null,"",window.location.pathname+"?dash="+c);
       }}>{loading?"생성 중...":"🍎 세션 코드 생성"}</Btn>
       {newCode&&<>
@@ -1110,10 +1129,14 @@ export default function App() {
       </div>
 
       {!isOpen&&(
-        <div className="no-print" style={{background:submitted?"#f0fff4":"#fffbf0",border:`1.5px solid ${submitted?"#27ae60":"#f39c12"}`,borderRadius:12,padding:"12px 16px",textAlign:"center",marginBottom:16}}>
-          <p style={{color:submitted?"#27ae60":"#f39c12",fontSize:"0.83rem",fontWeight:700,margin:0}}>
-            {submitted?"✅ 결과가 강사 대시보드에 전송됐어요!":"⏳ 결과 전송 중..."}
+        <div className="no-print" style={{background:saveFailed?"#fff5f5":submitted?"#f0fff4":"#fffbf0",border:`1.5px solid ${saveFailed?"#e74c3c":submitted?"#27ae60":"#f39c12"}`,borderRadius:12,padding:"12px 16px",textAlign:"center",marginBottom:16}}>
+          <p style={{color:saveFailed?"#e74c3c":submitted?"#27ae60":"#f39c12",fontSize:"0.83rem",fontWeight:700,margin:saveFailed?"0 0 8px":0}}>
+            {saveFailed?"⚠️ 결과 전송에 실패했어요":submitted?"✅ 결과가 강사 대시보드에 전송됐어요!":"⏳ 결과 전송 중..."}
           </p>
+          {saveFailed&&<>
+            <p style={{fontSize:"0.72rem",color:"#888",margin:"0 0 8px"}}>인터넷 연결을 확인하고 다시 시도해주세요. 계속 실패하면 강사에게 알려주세요.</p>
+            <button onClick={()=>setSaveFailed(false)} style={{background:"#e74c3c",color:"#fff",border:"none",borderRadius:20,padding:"6px 16px",fontSize:"0.76rem",fontFamily:"inherit",cursor:"pointer"}}>다시 시도</button>
+          </>}
         </div>
       )}
 
