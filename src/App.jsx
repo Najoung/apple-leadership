@@ -26,7 +26,7 @@ const APPLES = [
     famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문에서 상대성이론을 발견했습니다.",
     complement:"tell", tension:"jobs",
     questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다","나는 이해되지 않으면 불편해서 끝까지 파고드는 편이다","많은 사람이 동의해도, 근거가 약하면 선뜻 따르지 않는다"],
-    theory:{psych:"카너먼의 시스템1/2 사고(2011) — 빠른 직관과 느린 숙고를 구분",leadership:"코칭 리더십(Goleman, 2000) — 답을 주기보다 질문으로 스스로 찾게 만드는 방식"},
+    theory:{psych:"카너먼이 말한 '빠른 직관'과 '느린 숙고' 중, 이 유형은 후자를 선호해요. 답이 바로 떠올라도 한 번 더 검증하고 싶어지는 이유가 여기 있어요.",leadership:"코칭 리더십처럼, 답을 직접 주기보다 질문을 던져서 상대가 스스로 답을 찾게 만드는 방식이 가장 자연스러워요."},
     shineIn:["충분한 검토 시간이 주어질 때","깊이 있는 토론 문화에서"],
     hardWhen:["\"일단 해보고 생각하자\"는 압박을 받을 때","근거 없는 주장을 따라야 할 때"],
     orgProfile:{strength:"의사결정의 깊이",shadow:"회의가 길어지고 실행 타이밍을 놓칠 수 있음",need:"'언제 실행할 것인가'의 기준"} },
@@ -43,7 +43,7 @@ const APPLES = [
     famousExample:"🚀 일론 머스크는 '전기차는 불가능하다'는 상식을 깨고 테슬라를 만들었습니다.",
     complement:"cezanne", tension:"newton",
     questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다","나는 지금 없는 것을 상상하고 만들어보는 데 끌린다","완벽한 계획을 기다리기보다 부딪히며 배우는 게 더 빠르다고 믿는다"],
-    theory:{psych:"드웩의 성장 마인드셋(2006) — 능력은 노력으로 발전한다는 믿음",leadership:"변혁적 리더십(Burns 1978/Bass 1985) — 영감적 동기부여와 지적 자극"},
+    theory:{psych:"드웩이 말한 '성장 마인드셋' — 능력은 타고나는 게 아니라 노력으로 자란다는 믿음이 강해요. 그래서 완벽한 준비보다 '일단 해보고 배우는' 쪽을 선택해요.",leadership:"변혁적 리더십처럼, 팀에게 '우리가 이런 것도 할 수 있지 않을까'라는 영감을 주고 익숙한 틀에 자극을 던지는 역할을 자연스럽게 해요."},
     shineIn:["실패가 용납되는 문화에서","빠른 실행이 환영받을 때"],
     hardWhen:["기존 방식을 고수해야 할 때","완벽한 계획부터 요구받을 때"],
     orgProfile:{strength:"에너지, 빠른 적응",shadow:"완성이 부족한 채로 남을 수 있음",need:"완수의 문화"} },
@@ -60,7 +60,7 @@ const APPLES = [
     famousExample:"🏈 손흥민은 팀이 질 때마다 '내가 더 잘했어야 했다'고 먼저 말합니다.",
     complement:"eris", tension:"snowwhite",
     questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다","나는 한 약속은 상황이 바뀌어도 지키려고 노력한다","결과가 안 좋을 때, 내가 무엇을 다르게 할 수 있었는지부터 돌아본다"],
-    theory:{psych:"반두라의 자기효능감·내적귀인(1977/1997), 브라운의 취약성 연구(2012)",leadership:"진성 리더십(George, 2003) — 자기인식과 관계적 투명성"},
+    theory:{psych:"반두라가 말한 '내적 귀인' — 결과의 원인을 남이 아닌 나에게서 찾는 습관이 강해요. 브라운의 연구처럼, 약한 모습을 드러내는 것도 약함이 아니라 용기로 받아들여요.",leadership:"진성 리더십처럼, 겉과 속이 같은 모습이 주변에 신뢰를 만들어내요."},
     shineIn:["원칙과 약속이 지켜지는 조직에서","말과 행동이 일치하는 동료와 있을 때"],
     hardWhen:["책임 회피가 일상인 조직에 있을 때","혼자 모든 책임을 떠안아야 할 때"],
     orgProfile:{strength:"신뢰, 안정적 관계 구축",shadow:"변화에 느리고 기회를 놓칠 수 있음",need:"안전한 실험 공간"} },
@@ -77,7 +77,7 @@ const APPLES = [
     famousExample:"🔍 워렌 버핏은 '이해할 수 없는 사업에는 투자하지 않는다'는 원칙으로 수많은 버블을 피했습니다.",
     complement:"hercules", tension:"adam",
     questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다","다들 낙관적일 때 오히려 '혹시나' 하는 생각이 먼저 든다","중요한 결정 앞에서는 최악의 경우를 미리 그려보는 편이다"],
-    theory:{psych:"카너먼의 정서 휴리스틱(2011), 에번스의 리스크 인텔리전스(2012)",leadership:"위기관리 리더십·센스메이킹(Boin et al., 2005) — 위기 발생 전 신호를 읽는 선제적 감지"},
+    theory:{psych:"카너먼이 말한 '정서 휴리스틱' — 좋게 느껴지는 것도 위험이 숨어있을 수 있다는 걸 본능적으로 의심해요. 에번스가 말한 리스크 인텔리전스처럼, 무조건 겁내는 게 아니라 위험의 정도를 정확히 가늠하는 능력이 강해요.",leadership:"위기관리 리더십처럼, 문제가 실제로 터지기 전 아직 아무도 눈치채지 못한 신호를 먼저 읽어내는 데 강해요."},
     shineIn:["신중한 의사결정이 존중받을 때","충분한 검토 시간이 있을 때"],
     hardWhen:["경고가 부정적이라고 치부될 때","무계획적인 빠른 실행을 강요받을 때"],
     orgProfile:{strength:"안정성, 촘촘한 리스크 관리",shadow:"기회 앞에서 머뭇거릴 수 있음",need:"'최소 조건'의 설정"} },
@@ -94,7 +94,7 @@ const APPLES = [
     famousExample:"⚽ 박지성은 '가장 힘든 경기에서 가장 많이 뛴다'는 평가를 받은 실행형 리더였습니다.",
     complement:"newton", tension:"cezanne",
     questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다","마감이 임박하면 잡생각이 사라지고 해야 할 일만 보인다","복잡한 상황일수록 핵심만 간결하게 정리해서 움직인다"],
-    theory:{psych:"더크워스의 그릿(2016) — 열정과 인내의 조합",leadership:"거래적 리더십(Burns 1978/Bass 1985) — 명확한 목표-보상 교환"},
+    theory:{psych:"더크워스가 말한 '그릿' — 열정과 인내를 오래 유지하는 힘이 강해요. 압박이 심할수록 평소 쌓아온 그 힘이 발휘돼요.",leadership:"거래적 리더십처럼, 명확한 목표와 그에 따른 보상이 주어지면 가장 빠르고 확실하게 움직여요."},
     shineIn:["목표와 기한이 명확할 때","결과로 공정하게 평가받는 문화에서"],
     hardWhen:["목표 없이 흘러가는 회의가 계속될 때","모호한 지시만 받을 때"],
     orgProfile:{strength:"실행력, 위기 안정감",shadow:"팀원 소진과 번아웃 위험",need:"'사람을 보는' 지표"} },
@@ -111,7 +111,7 @@ const APPLES = [
     famousExample:"🏀 스테판 커리는 매일 같은 슛 동작을 수천 번 반복해 역사상 최고의 슈터가 됐습니다.",
     complement:"jobs", tension:"tell",
     questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다","다른 사람은 만족해도 나는 한 번 더 다듬고 싶어질 때가 많다","눈에 잘 안 띄는 디테일까지 신경 쓰는 편이다"],
-    theory:{psych:"에릭슨의 의도적 연습(1993), 칙센트미하이의 몰입 이론(1990)",leadership:"선도형 리더십(Goleman, 2000) — 말이 아니라 결과물로 기준을 세우는 방식"},
+    theory:{psych:"에릭슨이 말한 '의도적 연습' — 같은 것을 반복하되 매번 더 나은 방법을 찾는 방식에 익숙해요. 칙센트미하이가 말한 몰입처럼, 그 과정 자체에서 만족을 느껴요.",leadership:"선도형 리더십처럼, 말이 아니라 스스로 만든 결과물로 팀의 기준을 세워요."},
     shineIn:["전문성과 완성도를 인정하는 문화에서","충분한 시간이 주어질 때"],
     hardWhen:["대충 빨리 내놓으라는 압박을 받을 때","속도만 요구하는 분위기일 때"],
     orgProfile:{strength:"품질, 깊은 전문성",shadow:"변화에 느리게 반응할 수 있음",need:"'충분히 좋은 것'의 기준"} },
@@ -128,7 +128,7 @@ const APPLES = [
     famousExample:"🏔️ 엄홍길 대장은 히말라야 8000m 봉우리 16좌를 완등하며 '끝까지'의 의미를 증명했습니다.",
     complement:"snowwhite", tension:"eris",
     questions:["불가능해 보이는 목표도 일단 도전해본다","포기하고 싶은 순간에도 끝까지 완수하는 편이다","목표를 향해 가는 과정에서 장애물이 나를 더 강하게 만든다","시작한 일을 끝맺지 못하면 마음이 계속 남는다","힘든 순간에도 '그래도 여기까지 왔는데'라는 생각으로 버틴다"],
-    theory:{psych:"로크&래덤의 목표설정이론(1990), 데시&라이언의 자기결정이론(1985)",leadership:"셀프리더십(Manz, 1986) — 스스로 동기부여하고 방향을 설정하는 힘"},
+    theory:{psych:"로크와 래덤의 목표설정이론처럼, 뚜렷하고 도전적인 목표가 있을 때 가장 큰 힘을 내요. 데시와 라이언의 자기결정이론처럼, 처음엔 외부의 이유로 시작했더라도 점점 그 목표가 '내 것'이 되는 과정을 자연스럽게 거쳐요.",leadership:"셀프리더십처럼, 스스로 동기를 만들고 방향을 잡는 힘이 강해요."},
     shineIn:["도전적이고 의미있는 목표가 있을 때","끝까지 가는 것을 가치있게 여기는 문화에서"],
     hardWhen:["팀원들이 지쳐 따라오지 못할 때","목표 자체를 계속 재검토해야 할 때"],
     orgProfile:{strength:"끈기, 위기에서 강해짐",shadow:"방향 수정이 어려울 수 있음",need:"정기적인 방향 점검"} },
@@ -145,7 +145,7 @@ const APPLES = [
     famousExample:"🎤 방탄소년단은 기존 K-POP의 문법을 거부하고 자신들만의 서사로 세계를 바꿨습니다.",
     complement:"adam", tension:"hercules",
     questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다","'원래 이렇게 해왔다'는 말을 들으면 오히려 의문이 든다","모두가 침묵할 때, 그 침묵을 깨는 쪽은 대체로 나다"],
-    theory:{psych:"코저의 갈등의 기능(1956) — 갈등의 조직적 순기능",leadership:"적응적 리더십(Heifetz, 1994) — 갈등의 온도를 조절하며 변화를 이끄는 방식"},
+    theory:{psych:"코저가 말한 '갈등의 기능'처럼, 갈등을 무조건 피해야 할 것으로 보지 않고 오히려 조직에 필요한 자극으로 봐요.",leadership:"적응적 리더십처럼, 그 갈등의 온도를 스스로 조절하면서 변화를 이끌 때 진짜 힘을 발휘해요."},
     shineIn:["발언의 자유가 보장될 때","문제제기가 기여로 인정받는 문화에서"],
     hardWhen:["\"원래 이렇게 해왔다\"는 말이 모든 제안을 막을 때","문제제기가 문제아 취급받을 때"],
     orgProfile:{strength:"도전 정신, 생존력",shadow:"변화 피로, 완성이 부족할 수 있음",need:"'지킬 것'의 명확화"} },
@@ -756,6 +756,8 @@ export default function App() {
     const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
     const complementApple=top?APPLES.find(a=>a.id===top.complement):null;
     const tensionApple=top?APPLES.find(a=>a.id===top.tension):null;
+    const synergyDesc=top&&complementApple?TEAM_DYNAMICS.synergies.find(s=>(s.a===top.id&&s.b===complementApple.id)||(s.a===complementApple.id&&s.b===top.id))?.desc:null;
+    const tensionDesc=top&&tensionApple?TEAM_DYNAMICS.tensions.find(t=>(t.a===top.id&&t.b===tensionApple.id)||(t.a===tensionApple.id&&t.b===top.id))?.desc:null;
     const subApple=top?APPLES.find(a=>a.id===sorted.find(([id])=>id!==top.id)?.[0]):null;
     const comboKey=`${top?.id}_${subApple?.id}`;
     const combo=COMBO_RESULTS[comboKey];
@@ -850,8 +852,24 @@ export default function App() {
             </div>
           )}
 
+          {subApple&&combo&&(
+            <div className="print-card" style={{background:"#fff",border:`2px solid ${top?.color}`,borderRadius:16,padding:16,marginBottom:14}}>
+              <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🍎✨ 나의 사과 조합</h3>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12,flexWrap:"wrap"}}>
+                <span style={{background:top?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{top?.emoji} {top?.type}</span>
+                <span style={{color:"#aaa",fontSize:"0.85rem",fontWeight:700}}>+</span>
+                <span style={{background:subApple?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{subApple?.emoji} {subApple?.type}</span>
+              </div>
+              <div style={{background:`${top?.color}0d`,borderRadius:12,padding:"14px 16px"}}>
+                <div style={{fontWeight:700,fontSize:"0.9rem",color:top?.color,marginBottom:10,fontFamily:"Georgia,serif"}}>{combo.title}</div>
+                <div style={{fontSize:"0.83rem",color:"#444",lineHeight:1.8}}>{combo.desc}</div>
+              </div>
+            </div>
+          )}
+
           <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:18,marginBottom:14}}>
             <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 나는 어떤 리더인가?</h3>
+            <p style={{fontSize:"0.68rem",color:"#aaa",margin:"0 0 8px",fontStyle:"italic"}}>※ 주 유형({top?.type}) 기준 설명입니다</p>
             <p style={{fontSize:"0.86rem",color:"#444",lineHeight:1.8,margin:"0 0 14px"}}>{top?.detail}</p>
             <div style={{background:"#fafafa",borderRadius:10,padding:"12px 14px"}}>
               <p style={{fontSize:"0.75rem",fontWeight:700,color:"#888",margin:"0 0 8px"}}>이런 순간에 빛납니다 ✨</p>
@@ -864,6 +882,7 @@ export default function App() {
 
           <div className="print-card" style={{background:`${top?.color}10`,border:`1px solid ${top?.color}30`,borderRadius:16,padding:16,marginBottom:14}}>
             <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 나와 닮은 리더</h3>
+            <p style={{fontSize:"0.68rem",color:"#aaa",margin:"0 0 8px",fontStyle:"italic"}}>※ 주 유형({top?.type}) 기준 예시입니다</p>
             <p style={{fontSize:"0.84rem",color:"#444",lineHeight:1.7,margin:0}}>{top?.famousExample}</p>
           </div>
 
@@ -964,21 +983,6 @@ export default function App() {
       </div>
 
       {showFull&&<>
-      {subApple&&combo&&(
-        <div className="print-card" style={{background:"#fff",border:`2px solid ${top?.color}`,borderRadius:16,padding:16,marginBottom:14}}>
-          <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🍎✨ 나의 사과 조합</h3>
-          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12,flexWrap:"wrap"}}>
-            <span style={{background:top?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{top?.emoji} {top?.type}</span>
-            <span style={{color:"#aaa",fontSize:"0.85rem",fontWeight:700}}>+</span>
-            <span style={{background:subApple?.color,color:"#fff",borderRadius:50,padding:"4px 12px",fontSize:"0.72rem",fontWeight:700}}>{subApple?.emoji} {subApple?.type}</span>
-          </div>
-          <div style={{background:`${top?.color}0d`,borderRadius:12,padding:"14px 16px"}}>
-            <div style={{fontWeight:700,fontSize:"0.9rem",color:top?.color,marginBottom:10,fontFamily:"Georgia,serif"}}>{combo.title}</div>
-            <div style={{fontSize:"0.83rem",color:"#444",lineHeight:1.8}}>{combo.desc}</div>
-          </div>
-        </div>
-      )}
-
       <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>💡 직관 vs 행동 비교</h3>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12}}>
@@ -1014,7 +1018,7 @@ export default function App() {
 
       <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
         <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🤝 사과 궁합</h3>
-        <div style={{display:"flex",gap:8}}>
+        <div style={{display:"flex",gap:8,marginBottom:10}}>
           <div style={{flex:1,background:`${complementApple?.color}15`,border:`1px solid ${complementApple?.color}40`,borderRadius:12,padding:"12px 10px",textAlign:"center"}}>
             <div style={{fontSize:"1.4rem",marginBottom:4}}>{complementApple?.emoji}</div>
             <div style={{fontSize:"0.68rem",fontWeight:700,color:complementApple?.color,marginBottom:4}}>{complementApple?.type}</div>
@@ -1026,6 +1030,8 @@ export default function App() {
             <div style={{fontSize:"0.65rem",color:"#888",lineHeight:1.4}}>함께하면 성장</div>
           </div>
         </div>
+        {synergyDesc&&<p style={{fontSize:"0.76rem",color:"#555",lineHeight:1.6,margin:"0 0 6px"}}><strong style={{color:complementApple?.color}}>✨ 왜 파트너인가:</strong> {synergyDesc}</p>}
+        {tensionDesc&&<p style={{fontSize:"0.76rem",color:"#555",lineHeight:1.6,margin:0}}><strong style={{color:"#e67e22"}}>⚡ 왜 긴장인가:</strong> {tensionDesc}</p>}
       </div>
       </>}
       </>)}
