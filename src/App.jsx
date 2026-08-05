@@ -11,6 +11,7 @@ const DB = {
   async getSession(c){return this.get(`sessions/${c}`);},
   async saveResult(c,n,d){return this.push(`results/${c}`,{...d,name:n,ts:Date.now()});},
   async getResults(c){const r=await this.get(`results/${c}`);if(!r)return[];return Object.values(r).sort((a,b)=>b.ts-a.ts);},
+  async checkInstructor(code){return this.get(`instructors/${encodeURIComponent(code)}`);},
 };
 
 const APPLES = [
@@ -290,10 +291,10 @@ function synthesizeAxisSentence(axisScores){
 }
 
 function getTeamDynamics(dashData) {
-  if (dashData.length < 2) return null;
   const dist = Object.fromEntries(APPLES.map(a=>[a.id,0]));
   dashData.forEach(r=>{if(dist[r.topTypeId]!==undefined)dist[r.topTypeId]++;});
   const presentIds = APPLES.filter(a=>dist[a.id]>0).map(a=>a.id);
+  if (dashData.length < 2) return { dist, presentIds, matchedProfile:null, activeSynergies:[], activeTensions:[], missing:[] };
   let matchedProfile = null;
   let maxMatch = 0;
   TEAM_DYNAMICS.profiles.forEach(p=>{
@@ -324,6 +325,11 @@ export default function App() {
   const [scores,setScores]=useState({});
   const [chosenTie,setChosenTie]=useState(null);
   const [summaryMode,setSummaryMode]=useState(false);
+  const [instCodeIn,setInstCodeIn]=useState("");
+  const [instAuthed,setInstAuthed]=useState(null);
+  const [instErr,setInstErr]=useState("");
+  const [reconnectIn,setReconnectIn]=useState("");
+  const [reconnectErr,setReconnectErr]=useState("");
   const [submitted,setSubmitted]=useState(false);
   const [dashData,setDashData]=useState([]);
   const [lastRefresh,setLastRefresh]=useState(null);
@@ -354,6 +360,21 @@ export default function App() {
     }
   },[sc]);
 
+  // ── 새로고침·재접속 복원 (NEW) ──────────────────────────────────────────────
+  useEffect(()=>{
+    try{
+      const saved=localStorage.getItem("apple_leadership_instructor");
+      if(saved)setInstAuthed(JSON.parse(saved));
+    }catch{}
+    const dashCode=new URLSearchParams(window.location.search).get("dash");
+    if(dashCode){
+      (async()=>{
+        const s=await DB.getSession(dashCode);
+        if(s){setCode(dashCode);setSess(s);setSc("f_dash");}
+      })();
+    }
+  },[]);
+
   const handleAnswer=(val)=>{
     const key=`${APPLES[appleI].id}_${qI}`;
     const newAns={...answers,[key]:val};
@@ -368,7 +389,7 @@ export default function App() {
     else if(appleI>0){setAppleI(appleI-1);setQI(4);}
   };
 
-  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSummaryMode(false);setSubmitted(false);setDashData([]);setDashTab("overview");};
+  const resetAll=()=>{setSc(isOpen?"open_join":"home");setCode("");setSess(null);setCodeIn("");setNameIn("");setJoinErr("");setNewCode("");setPInfo(null);setStoryI(0);setIntuitive(null);setAnswers({});setAppleI(0);setQI(0);setScores({});setChosenTie(null);setSummaryMode(false);setSubmitted(false);setDashData([]);setDashTab("overview");setInstCodeIn("");setInstErr("");setReconnectIn("");setReconnectErr("");};
 
   const exportExcel=()=>{
     if(!dashData.length)return;
@@ -403,7 +424,7 @@ export default function App() {
       <h1 style={S.bigTitle}>나는 어떤 사과인가?</h1>
       <p style={S.bigSub}>🍎 사과 리더십 유형 진단 시스템</p>
       <p style={{...S.muted,margin:"0 0 28px",textAlign:"center",lineHeight:1.8}}>강사와 참여자가 실시간으로 연결되어<br/>팀별·부서별 리더십 분포를 한눈에 분석합니다</p>
-      <Btn onClick={()=>setSc("f_create")} style={{marginBottom:12}}>👨‍🏫 강사 모드 — 세션 만들기</Btn>
+      <Btn onClick={()=>setSc(instAuthed?"f_create":"f_auth")} style={{marginBottom:12}}>👨‍🏫 강사 모드 — 세션 만들기</Btn>
       <Btn blue onClick={()=>setSc("p_join")}>🙋 참여자 모드 — 진단 참여하기</Btn>
     </Box></Page>
   );
@@ -425,18 +446,63 @@ export default function App() {
     </Box></Page>
   );
 
-  if(sc==="f_create")return(
+  if(sc==="f_auth")return(
+    <Page><Box>
+      <BackBtn onClick={()=>setSc("home")}/>
+      <div style={{textAlign:"center",fontSize:"2.5rem",marginBottom:12}}>🔐</div>
+      <h2 style={{...S.h2,textAlign:"center"}}>강사 인증</h2>
+      <p style={{...S.muted,textAlign:"center",marginBottom:20}}>사과리더십 FT(교수자과정) 수료자에게 발급된<br/>인증 코드를 입력해주세요</p>
+      <Label>인증 코드</Label>
+      <Input placeholder="발급받은 코드를 입력하세요" value={instCodeIn} onChange={e=>setInstCodeIn(e.target.value)}/>
+      {instErr&&<p style={{color:"#e74c3c",fontSize:"0.8rem",marginBottom:8}}>{instErr}</p>}
+      <Btn style={{marginTop:4}} disabled={loading} onClick={async()=>{
+        if(!instCodeIn.trim()){setInstErr("인증 코드를 입력해주세요");return;}
+        setLoading(true);setInstErr("");
+        const rec=await DB.checkInstructor(instCodeIn.trim());
+        setLoading(false);
+        if(!rec){setInstErr("등록되지 않은 코드예요. 발급받은 코드를 다시 확인해주세요.");return;}
+        setInstAuthed(rec);
+        try{localStorage.setItem("apple_leadership_instructor",JSON.stringify(rec));}catch{}
+        setSc("f_create");
+      }}>{loading?"확인 중...":"인증하고 시작하기 →"}</Btn>
+    </Box></Page>
+  );
+
+  if(sc==="f_create"){
+    if(!instAuthed) return null;
+    return(
     <Page><Box>
       <BackBtn onClick={()=>setSc("home")}/>
       <h2 style={S.h2}>👨‍🏫 세션 만들기</h2>
+      <p style={{fontSize:"0.72rem",color:"#27ae60",marginBottom:8}}>✓ {instAuthed.name||"강사"}님 인증됨</p>
+
+      <div style={{background:"#f5f5f5",borderRadius:12,padding:"12px 14px",marginBottom:18}}>
+        <p style={{fontSize:"0.76rem",fontWeight:700,color:"#555",margin:"0 0 8px"}}>🔄 기존 세션으로 재접속</p>
+        <div style={{display:"flex",gap:6}}>
+          <input placeholder="세션 코드 (예: APPLE-1234)" value={reconnectIn} onChange={e=>setReconnectIn(e.target.value.toUpperCase())} style={{flex:1,border:"1.5px solid #ddd",borderRadius:8,padding:"8px 10px",fontSize:"0.82rem",fontFamily:"inherit",outline:"none"}}/>
+          <button disabled={loading} onClick={async()=>{
+            if(!reconnectIn.trim()){setReconnectErr("코드를 입력해주세요");return;}
+            setLoading(true);setReconnectErr("");
+            const s=await DB.getSession(reconnectIn.trim());
+            setLoading(false);
+            if(!s){setReconnectErr("해당 코드의 세션을 찾을 수 없어요");return;}
+            setCode(reconnectIn.trim());setSess(s);setSc("f_dash");
+            window.history.replaceState(null,"",window.location.pathname+"?dash="+reconnectIn.trim());
+          }} style={{background:"#26332A",color:"#fff",border:"none",borderRadius:8,padding:"0 14px",fontSize:"0.8rem",fontFamily:"inherit",cursor:"pointer"}}>열기</button>
+        </div>
+        {reconnectErr&&<p style={{color:"#e74c3c",fontSize:"0.72rem",margin:"6px 0 0"}}>{reconnectErr}</p>}
+      </div>
+
+      <p style={{fontSize:"0.76rem",fontWeight:700,color:"#555",margin:"0 0 8px"}}>✨ 새 세션 만들기</p>
       <Label>강의·교육 이름</Label>
       <Input placeholder="예) 2025 리더십 워크샵" value={sessName} onChange={e=>setSessName(e.target.value)}/>
       <Btn style={{marginTop:4}} disabled={loading} onClick={async()=>{
         setLoading(true);
         const c=makeCode();
-        const data={sessionName:sessName||"리더십 진단",createdAt:Date.now()};
+        const data={sessionName:sessName||"리더십 진단",createdAt:Date.now(),instructor:instAuthed?.name||""};
         await DB.setSession(c,data);
         setCode(c);setSess(data);setNewCode(c);setLoading(false);
+        window.history.replaceState(null,"",window.location.pathname+"?dash="+c);
       }}>{loading?"생성 중...":"🍎 세션 코드 생성"}</Btn>
       {newCode&&<>
         <div style={S.codeBox}>
@@ -447,7 +513,8 @@ export default function App() {
         <Btn onClick={()=>setSc("f_dash")} style={{marginTop:12}}>📊 실시간 대시보드 열기 →</Btn>
       </>}
     </Box></Page>
-  );
+    );
+  }
 
   if(sc==="f_dash"){
     const total=dashData.length;
