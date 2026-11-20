@@ -24,7 +24,7 @@ const APPLES = [
     detail:"응답 경향을 보면, 현상의 표면보다 본질을 탐구하는 모습이 나타나는 편입니다. 팀이 '어떻게 할까?'를 고민할 때 '왜 해야 하는가?'를 먼저 묻는 경향이 있고, 이 질문이 팀의 방향을 점검하는 힘이 될 수 있습니다.",
     situations:["회의에서 아무도 의문을 제기하지 않을 때 핵심 질문을 던진다","복잡한 문제의 근본 원인을 찾아 재정의한다","팀이 엉뚱한 방향으로 달릴 때 '왜?'로 브레이크를 건다"],
     growth:"분석이 끝나지 않아도 '가설'로 먼저 실행해보는 연습이 필요합니다. 완벽한 답을 기다리기보다, 60% 확신에서 시작하는 용기를 가져보세요.",
-    famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문에서 상대성이론을 발견했습니다.",
+    famousExample:"🧠 아인슈타인은 '빛과 나란히 달리면 세상이 어떻게 보일까?'라는 질문을 오래 붙들었고, 이는 상대성이론으로 이어졌습니다.",
     complement:"tell", tension:"jobs",
     questions:["나는 남들이 당연하게 넘기는 것에 '왜?'라고 질문한다","문제를 해결할 때 표면보다 근본 원인을 먼저 찾는다","결론보다 과정과 원리를 이해하는 데 더 많은 시간을 쓴다","나는 이해되지 않으면 불편해서 끝까지 파고드는 편이다","많은 사람이 동의해도, 근거가 약하면 선뜻 따르지 않는다"],
     theory:{psych:"카너먼이 말한 '빠른 직관'과 '느린 숙고' 중, 이 유형은 후자를 선호해요. 답이 바로 떠올라도 한 번 더 검증하고 싶어지는 이유가 여기 있어요.",leadership:"코칭 리더십처럼, 답을 직접 주기보다 질문을 던져서 상대가 스스로 답을 찾게 만드는 방식이 가장 자연스러워요."},
@@ -41,7 +41,7 @@ const APPLES = [
     detail:"응답 경향을 보면, '아직 없는 것'을 만드는 모습이 나타나는 편입니다. 완벽한 계획보다 빠른 실행을 믿고, 시도하지 않는 것을 더 아쉬워하는 경향이 있습니다. 먼저 걷는 그 길이 팀의 가능성이 될 수 있습니다.",
     situations:["기존 방식이 통하지 않을 때 완전히 새로운 접근을 제안한다","팀이 망설일 때 '일단 해보자'고 먼저 움직인다","아무도 시도하지 않은 아이디어를 현실로 만들어낸다"],
     growth:"혼자 달리는 속도를 팀의 속도에 맞추는 연습이 필요합니다. 내 아이디어를 팀과 함께 다듬는 과정이 결과의 완성도를 높입니다.",
-    famousExample:"🚀 일론 머스크는 '전기차는 불가능하다'는 상식을 깨고 테슬라를 만들었습니다.",
+    famousExample:"🚀 일론 머스크는 '전기차는 어렵다'는 통념에 맞서 테슬라의 성장을 이끌었습니다.",
     complement:"cezanne", tension:"newton",
     questions:["나는 완벽하지 않아도 일단 시도하고 보는 편이다","기존 방식보다 새로운 방법을 찾는 것이 더 즐겁다","아무도 해보지 않은 것에 도전하는 것이 두렵지 않다","나는 지금 없는 것을 상상하고 만들어보는 데 끌린다","완벽한 계획을 기다리기보다 부딪히며 배우는 게 더 빠르다고 믿는다"],
     theory:{psych:"드웩이 말한 '성장 마인드셋' — 능력은 타고나는 게 아니라 노력으로 자란다는 믿음이 강해요. 그래서 완벽한 준비보다 '일단 해보고 배우는' 쪽을 선택해요.",leadership:"변혁적 리더십처럼, 팀에게 '우리가 이런 것도 할 수 있지 않을까'라는 영감을 주고 익숙한 틀에 자극을 던지는 역할을 자연스럽게 해요."},
@@ -58,7 +58,7 @@ const APPLES = [
     detail:"응답 경향을 보면, '내 탓'이라고 말할 수 있는 모습이 나타나는 편입니다. 결과가 좋든 나쁘든 자신의 선택을 받아들이는 태도가 팀의 신뢰를 만드는 바탕이 될 수 있고, 이런 책임감은 팀이 안심하고 도전할 수 있는 안전망이 될 수 있습니다.",
     situations:["팀의 실수를 외부에 탓하지 않고 내부에서 해결한다","어려운 결정을 내릴 때 결과까지 책임지겠다고 먼저 선언한다","사과(謝過)가 필요할 때 가장 먼저, 가장 진심으로 한다"],
     growth:"모든 것을 혼자 짊어지려 하지 마세요. 책임을 나누는 것도 리더십입니다. '우리의 책임'으로 확장하면 팀 전체가 성장합니다.",
-    famousExample:"🏈 손흥민은 팀이 질 때마다 '내가 더 잘했어야 했다'고 먼저 말합니다.",
+    famousExample:"⚽ 손흥민은 2022 카타르 월드컵 가나전 패배 뒤 '더 잘했어야 했는데, 개인적으로 잘했어야 했는데'라고 말했습니다.",
     complement:"eris", tension:"snowwhite",
     questions:["나는 내 결정의 결과를 타인의 탓으로 돌리지 않는다","실수했을 때 변명보다 인정이 먼저 나온다","나는 내 선택이 가져올 결과를 충분히 감수하며 결정한다","나는 한 약속은 상황이 바뀌어도 지키려고 노력한다","결과가 안 좋을 때, 내가 무엇을 다르게 할 수 있었는지부터 돌아본다"],
     theory:{psych:"반두라가 말한 '내적 귀인' — 결과의 원인을 남이 아닌 나에게서 찾는 습관이 강해요. 브라운의 연구처럼, 약한 모습을 드러내는 것도 약함이 아니라 용기로 받아들여요.",leadership:"진성 리더십처럼, 겉과 속이 같은 모습이 주변에 신뢰를 만들어내요."},
@@ -75,7 +75,7 @@ const APPLES = [
     detail:"응답 경향을 보면, 팀의 레이더 같은 모습이 나타나는 편입니다. 모두가 흥분할 때 '이면에 무엇이 있는가'를 냉정하게 살피는 경향이 있고, 이 점이 팀이 위기를 피하는 데 도움이 될 수 있습니다.",
     situations:["빠르게 진행되는 의사결정에서 놓친 리스크를 발견한다","협력사나 파트너의 제안에서 숨겨진 조건을 읽어낸다","팀이 낙관적일 때 현실적인 시나리오를 준비하게 한다"],
     growth:"모든 것을 의심하다 보면 팀의 에너지가 떨어질 수 있습니다. 리스크를 발견했다면 해결책도 함께 제시하는 습관을 만들어보세요.",
-    famousExample:"🔍 워렌 버핏은 '이해할 수 없는 사업에는 투자하지 않는다'는 원칙으로 수많은 버블을 피했습니다.",
+    famousExample:"🔍 워렌 버핏은 '이해할 수 없는 사업에는 투자하지 않는다'는 원칙을 강조해 왔습니다.",
     complement:"hercules", tension:"adam",
     questions:["나는 좋은 제안이나 기회 앞에서 먼저 리스크를 생각한다","상황이나 사람의 이면을 파악하는 편이다","팀에서 문제가 생기기 전에 미리 신호를 감지하는 편이다","다들 낙관적일 때 오히려 '혹시나' 하는 생각이 먼저 든다","중요한 결정 앞에서는 최악의 경우를 미리 그려보는 편이다"],
     theory:{psych:"카너먼이 말한 '정서 휴리스틱' — 좋게 느껴지는 것도 위험이 숨어있을 수 있다는 걸 자연스럽게 의심하는 편이에요. 에번스가 말한 리스크 인텔리전스처럼, 무조건 겁내는 게 아니라 위험의 정도를 가늠하는 힘이 강한 편이에요.",leadership:"위기관리 리더십처럼, 문제가 실제로 터지기 전 아직 아무도 눈치채지 못한 신호를 먼저 읽어내는 데 강해요."},
@@ -92,7 +92,7 @@ const APPLES = [
     detail:"응답 경향을 보면, 압박이 클수록 집중이 선명해지는 모습이 나타나는 편입니다. 마감, 위기, 불확실성 속에서도 힘을 내는 경향이 있고, 팀이 흔들릴 때 중심을 잡아 주는 역할을 할 수 있습니다.",
     situations:["마감 직전 가장 차분하게 핵심에 집중한다","위기 상황에서 팀을 안정시키고 다음 행동을 지시한다","어떤 환경에서도 약속한 결과를 반드시 만들어낸다"],
     growth:"결과를 만드는 과정에서 팀원들이 지쳐있지 않은지 돌아보세요. 성과와 함께 사람을 챙기는 리더가 오래 갑니다.",
-    famousExample:"⚽ 박지성은 '가장 힘든 경기에서 가장 많이 뛴다'는 평가를 받은 실행형 리더였습니다.",
+    famousExample:"⚽ 박지성은 '산소탱크', '두 개의 심장'이라는 별명이 붙을 만큼 중요한 경기에서도 활동량이 많은 선수로 평가받았습니다.",
     complement:"newton", tension:"cezanne",
     questions:["압박이 심할수록 오히려 집중력이 높아지는 편이다","나는 어떤 상황에서도 약속한 결과를 반드시 만들어낸다","목표가 정해지면 감정보다 실행이 먼저 움직인다","마감이 임박하면 잡생각이 사라지고 해야 할 일만 보인다","복잡한 상황일수록 핵심만 간결하게 정리해서 움직인다"],
     theory:{psych:"더크워스가 말한 '그릿' — 열정과 인내를 오래 유지하는 힘이 강해요. 압박이 심할수록 평소 쌓아온 그 힘이 발휘돼요.",leadership:"거래적 리더십처럼, 명확한 목표와 그에 따른 보상이 주어지면 빠르고 확실하게 움직이는 편이에요."},
@@ -109,7 +109,7 @@ const APPLES = [
     detail:"응답 경향을 보면, '한 번 더' 다듬는 모습이 나타나는 편입니다. 남들이 충분하다고 할 때도 더 나은 방법을 찾는 경향이 있고, 이 집요함이 팀의 결과물을 한 단계 끌어올릴 수 있습니다.",
     situations:["다른 사람이 완성했다고 넘긴 일에서 개선점을 찾아낸다","한 가지 전문성을 깊이 파고들어 팀의 핵심 역량이 된다","장기 프로젝트에서 끝까지 기준을 낮추지 않는다"],
     growth:"완벽을 추구하다 타이밍을 놓치는 경우가 있습니다. '80점짜리 지금'이 '100점짜리 나중'보다 나을 때를 구별하는 감각을 키워보세요.",
-    famousExample:"🏀 스테판 커리는 매일 같은 슛 동작을 수천 번 반복해 역사상 최고의 슈터가 됐습니다.",
+    famousExample:"🏀 스테판 커리는 같은 슛 동작을 끊임없이 반복 훈련하는 선수로 알려져 있고, 역사상 최고의 슈터 중 한 명으로 꼽힙니다.",
     complement:"jobs", tension:"tell",
     questions:["나는 빠른 결과보다 완성도 높은 결과를 더 중요하게 여긴다","한 가지 일을 깊이 파고드는 것이 여러 일을 하는 것보다 편하다","반복과 연습을 통해 실력이 쌓인다고 믿는다","다른 사람은 만족해도 나는 한 번 더 다듬고 싶어질 때가 많다","눈에 잘 안 띄는 디테일까지 신경 쓰는 편이다"],
     theory:{psych:"에릭슨이 말한 '의도적 연습' — 같은 것을 반복하되 매번 더 나은 방법을 찾는 방식에 익숙해요. 칙센트미하이가 말한 몰입처럼, 그 과정 자체에서 만족을 느껴요.",leadership:"선도형 리더십처럼, 말이 아니라 스스로 만든 결과물로 팀의 기준을 세워요."},
@@ -143,7 +143,7 @@ const APPLES = [
     detail:"응답 경향을 보면, 조직의 '불편한 진실'을 말하는 모습이 나타나는 편입니다. 모두가 현실에 안주할 때 '이대로는 안 된다'고 말할 수 있는 용기가 조직의 정체를 푸는 계기가 될 수 있습니다.",
     situations:["관성적으로 반복되는 회의나 방식에 '왜 이렇게 해야 하냐'고 도전한다","아무도 말 못 하는 조직의 문제를 공론화한다","변화가 두려운 팀에게 먼저 첫 걸음을 보여준다"],
     growth:"변화를 촉구할 때 대안도 함께 준비해주세요. 판을 흔드는 것과 판을 새로 짜는 것은 함께 이뤄져야 진짜 변화가 됩니다.",
-    famousExample:"🎤 방탄소년단은 기존 K-POP의 문법을 거부하고 자신들만의 서사로 세계를 바꿨습니다.",
+    famousExample:"🎤 방탄소년단은 자신들만의 서사로 세계 무대에서 주목받았습니다.",
     complement:"adam", tension:"hercules",
     questions:["조직이 너무 안정적으로만 흘러갈 때 변화가 필요하다고 느낀다","나는 불편한 질문을 던지거나 도전적인 의견을 내는 편이다","갈등이 생기더라도 필요한 변화는 추진해야 한다고 생각한다","'원래 이렇게 해왔다'는 말을 들으면 오히려 의문이 든다","모두가 침묵할 때, 그 침묵을 깨는 쪽은 대체로 나다"],
     theory:{psych:"코저가 말한 '갈등의 기능'처럼, 갈등을 무조건 피해야 할 것으로 보지 않고 오히려 조직에 필요한 자극으로 봐요.",leadership:"적응적 리더십처럼, 그 갈등의 온도를 스스로 조절하면서 변화를 이끌 때 진짜 힘을 발휘해요."},
@@ -443,7 +443,7 @@ export default function App() {
       <h1 style={S.bigTitle}>나는 어떤 사과인가?</h1>
       <p style={S.bigSub}>사과 리더십 자기탐색</p>
       <p style={{...S.muted,margin:"0 0 24px",textAlign:"center",lineHeight:1.8}}>
-        8가지 사과 이야기를 읽고<br/>나의 리더십 유형을 발견해보세요
+        8가지 사과 이야기를 읽고<br/>나의 리더십 경향을 살펴보세요
       </p>
       <Label>이름</Label>
       <Input placeholder="이름을 입력하세요" value={nameIn} onChange={e=>setNameIn(e.target.value)}/>
@@ -864,7 +864,7 @@ export default function App() {
         <div className="print-card" style={{background:"#fff",border:`2px solid ${top.color}`,borderRadius:20,padding:20}}>
           <div style={{textAlign:"center",marginBottom:14}}>
             <div style={{...S.appleCircle,background:top.color,marginBottom:8,width:56,height:56,fontSize:"1.5rem"}}>{top.emoji}</div>
-            <p style={{color:"#888",fontSize:"0.7rem",margin:"0 0 2px"}}>나의 리더십 유형</p>
+            <p style={{color:"#888",fontSize:"0.7rem",margin:"0 0 2px"}}>나의 주요 리더십 경향</p>
             <h2 style={{color:top.color,fontSize:"1.4rem",margin:"0 0 2px",fontFamily:"Georgia,serif"}}>{top.type}</h2>
             <p style={{fontSize:"0.78rem",color:"#666",fontStyle:"italic"}}>"{top.tagline}"</p>
           </div>
@@ -882,7 +882,7 @@ export default function App() {
       {!showFull ? (
         <>
           <div className="print-card" style={{background:"linear-gradient(135deg,#eee,#f8f8f8)",border:"2px solid #ccc",borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
-            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
+            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 주요 리더십 경향</p>
             <h2 style={{color:"#555",fontSize:"1.4rem",margin:"0 0 8px",fontFamily:"Georgia,serif"}}>균형형 — {tiedIds.length}가지 강점이 고르게 발달</h2>
             <p style={{fontSize:"0.8rem",color:"#777",margin:"0 0 14px"}}>{tiedIds.length}개 유형에서 똑같이 높은 점수({maxScore}점)가 나왔어요. 한 가지 강점에 치우치지 않고 여러 방식을 두루 갖췄다는 뜻이에요. 그중 지금 나를 가장 잘 설명하는 유형을 골라 더 자세히 볼 수 있어요.</p>
             <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
@@ -913,7 +913,7 @@ export default function App() {
           )}
           <div className="print-card" style={{background:`linear-gradient(135deg,${top?.color}18,${top?.color}35)`,border:`2px solid ${top?.color}`,borderRadius:20,padding:"24px 16px",textAlign:"center",marginBottom:16}}>
             <div style={{...S.appleCircle,background:top?.color,marginBottom:12}}>{top?.emoji}</div>
-            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 리더십 유형</p>
+            <p style={{color:"#888",fontSize:"0.75rem",margin:"0 0 4px"}}>나의 주요 리더십 경향</p>
             <h2 style={{color:top?.color,fontSize:"1.65rem",margin:"0 0 4px",fontFamily:"Georgia,serif"}}>{top?.type}</h2>
             <p style={{color:top?.color,fontSize:"0.83rem",margin:"0 0 12px"}}>{top?.name}</p>
             <p style={{fontFamily:"Georgia,serif",color:"#444",fontSize:"0.9rem",margin:"0 0 14px"}}>"{top?.tagline}"</p>
@@ -955,7 +955,7 @@ export default function App() {
           )}
 
           <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:18,marginBottom:14}}>
-            <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 나는 어떤 리더인가?</h3>
+            <h3 style={{fontSize:"0.88rem",margin:"0 0 10px",color:"#333"}}>🍎 이런 모습이 나타날 수 있어요</h3>
             <p style={{fontSize:"0.68rem",color:"#aaa",margin:"0 0 8px",fontStyle:"italic"}}>※ 주요 경향({top?.type}) 기준 설명입니다</p>
             <p style={{fontSize:"0.86rem",color:"#444",lineHeight:1.8,margin:"0 0 14px"}}>{top?.detail}</p>
             <div style={{background:"#fafafa",borderRadius:10,padding:"12px 14px"}}>
@@ -968,7 +968,7 @@ export default function App() {
           </div>
 
           <div className="print-card" style={{background:`${top?.color}10`,border:`1px solid ${top?.color}30`,borderRadius:16,padding:16,marginBottom:14}}>
-            <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 나와 닮은 리더</h3>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 8px",color:top?.color}}>💡 비슷한 모습을 보인 리더 이야기</h3>
             <p style={{fontSize:"0.68rem",color:"#aaa",margin:"0 0 8px",fontStyle:"italic"}}>※ 주요 경향({top?.type}) 기준 예시입니다</p>
             <p style={{fontSize:"0.84rem",color:"#444",lineHeight:1.7,margin:0}}>{top?.famousExample}</p>
           </div>
@@ -988,7 +988,7 @@ export default function App() {
 
           {/* ── 빛나는 환경 / 힘든 순간 (NEW) ── */}
           <div className="print-card" style={{background:"#fff",border:"1px solid #eee",borderRadius:16,padding:16,marginBottom:14}}>
-            <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🌤 나에게 맞는 환경</h3>
+            <h3 style={{fontSize:"0.85rem",margin:"0 0 12px",color:"#333"}}>🌤 나에게 맞을 수 있는 환경</h3>
             <div style={{marginBottom:10}}>
               <span style={{fontSize:"0.75rem",fontWeight:700,color:"#27ae60"}}>이런 환경에서 빛나요</span>
               {top?.shineIn?.map((s,i)=><p key={i} style={{fontSize:"0.8rem",color:"#555",margin:"4px 0 0",lineHeight:1.5}}>• {s}</p>)}
@@ -1109,12 +1109,12 @@ export default function App() {
           <div style={{flex:1,background:`${complementApple?.color}15`,border:`1px solid ${complementApple?.color}40`,borderRadius:12,padding:"12px 10px",textAlign:"center"}}>
             <div style={{fontSize:"1.4rem",marginBottom:4}}>{complementApple?.emoji}</div>
             <div style={{fontSize:"0.68rem",fontWeight:700,color:complementApple?.color,marginBottom:4}}>{complementApple?.type}</div>
-            <div style={{fontSize:"0.65rem",color:"#888",lineHeight:1.4}}>최고의 파트너</div>
+            <div style={{fontSize:"0.65rem",color:"#888",lineHeight:1.4}}>잘 맞을 수 있는 파트너</div>
           </div>
           <div style={{flex:1,background:"#fff8f0",border:"1px solid #f39c1240",borderRadius:12,padding:"12px 10px",textAlign:"center"}}>
             <div style={{fontSize:"1.4rem",marginBottom:4}}>{tensionApple?.emoji}</div>
             <div style={{fontSize:"0.68rem",fontWeight:700,color:tensionApple?.color,marginBottom:4}}>{tensionApple?.type}</div>
-            <div style={{fontSize:"0.65rem",color:"#888",lineHeight:1.4}}>함께하면 성장</div>
+            <div style={{fontSize:"0.65rem",color:"#888",lineHeight:1.4}}>함께하면 배울 점이 많은 파트너</div>
           </div>
         </div>
         {synergyDesc&&<p style={{fontSize:"0.76rem",color:"#555",lineHeight:1.6,margin:"0 0 6px"}}><strong style={{color:complementApple?.color}}>✨ 왜 파트너인가:</strong> {synergyDesc}</p>}
